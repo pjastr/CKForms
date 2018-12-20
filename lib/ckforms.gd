@@ -16,4 +16,30 @@
 ##
 DeclareGlobalFunction( "NonCompactDimension" );
 
+DeclareGlobalFunction( "RealRank" );
+
+DeclareGlobalFunction( "CompactDimension" );
+
+#############################################################################
+##
+#F  NicerSemisimpleSubalgebras(<G>)
+##
+##  return list of types of semisimple subalgebras of G. The list is based on
+##  LieAlgebraAndSubalgebras function(from SLA package), but
+##  .... to do.
+##
+
+DeclareGlobalFunction( "Simple" );
+
+DeclareGlobalFunction( "Simple2" );
+
+DeclareGlobalFunction( "NicerSemisimpleSubalgebras" );
+
+DeclareGlobalFunction( "GetAllForms" );
+
+DeclareGlobalFunction( "PotentialSubalgebras" );
+DeclareGlobalFunction( "NicerPotentialSubalgebras" );
+
+
+DeclareGlobalFunction( "NicerPotentialTriples" );
 #E  ckforms.gd  . . . . . . . . . . . . . . . . . . . . . . . . . . . ends here

@@ -29,15 +29,15 @@ DeclareGlobalFunction( "CompactDimension" );
 ##  .... to do.
 ##
 
-DeclareGlobalFunction( "Simple" );
+
 
 DeclareGlobalFunction( "Separate" );
 
-DeclareGlobalFunction( "Simple2" );
+
 
 DeclareGlobalFunction( "NicerSemisimpleSubalgebras" );
 
-DeclareGlobalFunction( "GetAllForms" );
+
 
 DeclareGlobalFunction( "PotentialSubalgebras" );
 DeclareGlobalFunction( "NicerPotentialSubalgebras" );

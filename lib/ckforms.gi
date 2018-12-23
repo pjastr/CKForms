@@ -32,93 +32,36 @@ local G, K, dimK;
     return dimK;
 end);
 
-###############################################################################
-InstallGlobalFunction( Simple, function()
-local ListSimple,i,k,j ;
-    ListSimple:=[];
-    #A
-    Print("A \n");
-    for k in [1..8] do
-        for i in [1..NumberRealForms("A",k)] do
-            Append(ListSimple,[["A",k,i]]);
-        od;
-    od;
-    #B
-    Print("B \n");
-    for k in [2..8] do
-        for i in [1..NumberRealForms("B",k)] do
-            Append(ListSimple,[["B",k,i]]);
-        od;
-    od;
-    #C
-    Print("C \n");
-    for k in [3..8] do
-        for i in [1..NumberRealForms("C",k)] do
-            Append(ListSimple,[["C",k,i]]);
-        od;
-    od;
-    #D
-    Print("D \n");
-    for k in [4..8] do
-        for i in [1..NumberRealForms("D",k)] do
-            Append(ListSimple,[["D",k,i]]);
-        od;
-    od;
-    #E
-    Print("E \n");
-    for k in [6..8] do
-        for i in [1..NumberRealForms("E",k)] do
-            Append(ListSimple,[["E",k,i]]);
-        od;
-    od;
-    #F
-    Print("F \n");
-    for i in [1..NumberRealForms("F",4)] do
-        Append(ListSimple,[["F",4,i]]);
-    od;
-    #G
-    Print("G \n");
-    for i in [1..NumberRealForms("G",2)] do
-        Append(ListSimple,[["G",2,i]]);
-    od;
-    return ListSimple;
-end);
 
 ###############################################################################
-InstallGlobalFunction( Simple2, function()
-local ListSR,k,A,i,r1,r2, ListSR2;
-    A:=Simple();
-    ListSR:=Tuples(A,2);
-    Print("realification \n");
-    #A
-    for k in [1..4] do
-        Append(ListSR,[[["A",k,0],["A",k,0]]]);
-    od;
-    #B
-    for k in [2..4] do
-        Append(ListSR,[[["B",k,0],["B",k,0]]]);
-    od;
-    #C
-    for k in [3..4] do
-        Append(ListSR,[[["C",k,0],["C",k,0]]]);
-    od;
-    #D
-    Append(ListSR,[[["D",4,0],["D",4,0]]]);
-    #E - none realification with rank<=8
-    #F
-    Append(ListSR,[[["F",4,0],["F",4,0]]]);
-    #G
-    Append(ListSR,[[["G",2,0],["G",2,0]]]);
-    ListSR2:=[];
-    for i in [1..Length(ListSR)] do
-        r1:=ListSR[i][1][2];
-        r2:=ListSR[i][2][2];
-        if r1+r2<=8 then
-            Append(ListSR2,[ListSR[i]]);
+InstallGlobalFunction( Separate, function(arg)
+local s, n, i,j, t;
+    s:=arg[1];
+    t:=[];
+    n:=Length(s);
+    for j in [0..n] do
+        i:=3*j+1;
+        if i<= n then
+            if i+4<=n then
+                if s[i]=s[i+3] and s[i+1]=s[i+4] then
+                    if i+5>n and i=1 then
+                        t:= [s{ [i..i+4] },""];
+                    elif i+5>n and i>1 then
+                        t:=[s{ [i..i+4] },s{ [1..i-2] }];
+                    elif i+5<=n and i=1 then
+                        t:=[s{ [i..i+4] },s{ [i+6..n] }];
+                    else  
+                        t:= [s{ [i..i+4] },Concatenation(s{ [1..i-2] },s{ [i+5..n] })];
+                    fi;
+                    break;
+                fi;
+            fi;
         fi;
     od;
-    return ListSR2;
+    return t;
 end);
+
+
 
 ###############################################################################
 InstallGlobalFunction( NicerSemisimpleSubalgebras, function(arg)
@@ -135,34 +78,6 @@ end);
 
 
 
-###############################################################################
-InstallGlobalFunction( GetAllForms, function(arg)
-local G, AF, len,i,j, forms,t1,r1,t2,r2;
-    G:=arg[1];
-    len:=Length(G);
-    AF:=[];
-    t1:=[G[1]];
-    r1:=IntChar(G[2])-48;
-    if len>2 then
-        t2:=[G[4]];
-        r2:=IntChar(G[5])-48;
-    fi;
-    if len=2 then
-        for i in [1..NumberRealForms(t1,r1)] do
-            Append(AF,[[[t1,r1,i]]]);
-        od;
-    elif len=5 then
-        for i in [1..NumberRealForms(t1,r1)] do
-            for j in [1..NumberRealForms(t2,r2)] do
-                Append(AF,[[[t1,r1,i],[t2,r2,j]]]);
-            od;
-        od;
-        if t1=t2 and r1=r2 then
-            Append(AF,[[[t1,r1,0],[t1,r1,0]]]);
-        fi;
-    fi;
-    return AF;
-end);
 
 ###############################################################################
 InstallGlobalFunction( PotentialSubalgebras, function(arg)
@@ -259,7 +174,7 @@ end);
 
 ###############################################################################
 InstallGlobalFunction( NicerPotentialSubalgebras, function(arg)
-local G,H1,H2,H3,H4,H5,H6,H7,H8,GG,type, rank, id,idH, str,len,t1,r1,t2,r2,t3,r3,t4,r4,t5,r5,t6,r6,t7,r7,t8,r8,i,j,k,k1,k2,k3,k4,k5,k6,ListSub,Sub, rankRG, rankRH, dimpG, dimpH, dimkG, dimkH;
+local G,H1,H2,H3,H4,H5,H6,H7,H8,GG,type, rank, id,idH, str,len,t1,r1,t2,r2,t3,r3,t4,r4,t5,r5,t6,r6,t7,r7,t8,r8,i,j,k,k1,k2,k3,k4,k5,k6,ListSub,Sub, rankRG, rankRH, dimpG, dimpH, dimkG, dimkH, s1, st1, sr1,s2,st2,sr2,s3,st3,sr3,s4,st4,sr4;
     type:=arg[1];
     rank:=arg[2];
     id:=arg[3];
@@ -336,19 +251,22 @@ local G,H1,H2,H3,H4,H5,H6,H7,H8,GG,type, rank, id,idH, str,len,t1,r1,t2,r2,t3,r3
                     fi;
                 od;
             od;
-            if t1=t2 and r1=r2 then
-                H1:=RealFormById(t1,r1,0);
+            if Length(Separate(str))=2 then
+                s1:=Separate(str)[1];
+                st1:=[s1[1]];
+                sr1:=IntChar(s1[2])-48;
+                H1:=RealFormById(st1,sr1,0);
                 rankRH:=RealRank(H1);
                 dimpH:=NonCompactDimension(H1);
                 dimkH:=CompactDimension(H1);
                 if rankRG> rankRH  then
                     if dimpG>= dimpH then
                         if dimkG> dimkH then
-                            idH:=[rankRH,dimpH,t1,r1,0,t1,r1,0];
+                            idH:=[rankRH,dimpH,st1,sr1,0,st1,sr1,0];
                             Add(Sub,idH);
                         fi;
                     fi;
-                fi;
+                fi; 
             fi;
         elif Length(str) =8 then
             for k in [1..NumberRealForms(t1,r1)] do
@@ -371,38 +289,27 @@ local G,H1,H2,H3,H4,H5,H6,H7,H8,GG,type, rank, id,idH, str,len,t1,r1,t2,r2,t3,r3
                     od;
                 od;
             od;
-            if t1=t2 and r1=r2 then
-                for k1 in [1..NumberRealForms(t3,r3)] do
-                    H1:=RealFormById(t1,r1,0);
-                    H2:=RealFormById(t3,r3,k1);
+            if Length(Separate(str))=2 then
+                s1:=Separate(str)[1];
+                st1:=[s1[1]];
+                sr1:=IntChar(s1[2])-48;
+                s2:=Separate(str)[2];
+                st2:=[s2[1]];
+                sr2:=IntChar(s2[2])-48;
+                for j in [1..NumberRealForms(st2,sr2)] do
+                    H1:=RealFormById(st1,sr1,0);
+                    H2:=RealFormById(st2,sr2,j); 
                     rankRH:=RealRank(H1)+RealRank(H2);
                     dimpH:=NonCompactDimension(H1)+NonCompactDimension(H2);
-                    dimkH:=CompactDimension(H1)+CompactDimension(H2);  
+                    dimkH:=CompactDimension(H1)+CompactDimension(H2);   
                     if rankRG> rankRH  then
                         if dimpG>= dimpH then
                             if dimkG> dimkH then
-                                idH:=[rankRH,dimpH,t1,r1,0,t1,r1,0,t3,r3,k1];
+                                idH:=[rankRH,dimpH,st1,sr1,0,st1,sr1,0,st2,sr2,j];
                                 Add(Sub,idH);
                             fi;
                         fi;
-                    fi;
-                od;
-            fi;
-            if t2=t3 and r2=r3 then
-                for k in [1..NumberRealForms(t1,r1)] do
-                    H1:=RealFormById(t1,r1,k);
-                    H2:=RealFormById(t2,r2,0);
-                    rankRH:=RealRank(H1)+RealRank(H2);
-                    dimpH:=NonCompactDimension(H1)+NonCompactDimension(H2);
-                    dimkH:=CompactDimension(H1)+CompactDimension(H2);  
-                    if rankRG> rankRH  then
-                        if dimpG>= dimpH then
-                            if dimkG> dimkH then
-                                idH:=[rankRH,dimpH,t1,r1,k,t2,r2,0,t2,r2,0];
-                                Add(Sub,idH);
-                            fi;
-                        fi;
-                    fi;
+                    fi; 
                 od;
             fi;
         elif Length(str) =11 then
@@ -429,80 +336,55 @@ local G,H1,H2,H3,H4,H5,H6,H7,H8,GG,type, rank, id,idH, str,len,t1,r1,t2,r2,t3,r3
                     od;
                 od;
             od;
-            if t1=t2 and r1=r2 then
-                for k1 in [1..NumberRealForms(t3,r3)] do
-                    for k2 in [1..NumberRealForms(t4,r4)] do
-                        H1:=RealFormById(t1,r1,0);
-                        H2:=RealFormById(t3,r3,k1);
-                        H3:=RealFormById(t4,r4,k2);
+            if Length(Separate(str))=2 then
+                s1:=Separate(str)[1];
+                st1:=[s1[1]];
+                sr1:=IntChar(s1[2])-48;
+                s2:=Separate(str)[2];
+                st2:=[s2[1]];
+                sr2:=IntChar(s2[2])-48;
+                s3:=Separate(str)[2];
+                st3:=[s3[4]];
+                sr3:=IntChar(s3[5])-48;
+                for j in [1..NumberRealForms(st2,sr2)] do
+                    for k1 in [1..NumberRealForms(st3,sr3)] do
+                        H1:=RealFormById(st1,sr1,0);
+                        H2:=RealFormById(st2,sr2,j); 
+                        H3:=RealFormById(st3,sr3,k1);
                         rankRH:=RealRank(H1)+RealRank(H2)+RealRank(H3);
                         dimpH:=NonCompactDimension(H1)+NonCompactDimension(H2)+NonCompactDimension(H3);
-                        dimkH:=CompactDimension(H1)+CompactDimension(H2)+CompactDimension(H3);  
+                        dimkH:=CompactDimension(H1)+CompactDimension(H2)+CompactDimension(H3);   
                         if rankRG> rankRH  then
                             if dimpG>= dimpH then
                                 if dimkG> dimkH then
-                                    idH:=[rankRH,dimpH,t1,r1,0,t1,r1,0,t3,r3,k1,t4,r4,k2];
+                                    idH:=[rankRH,dimpH,st1,sr1,0,st1,sr1,0,st2,sr2,j,st3,sr3,k1];
                                     Add(Sub,idH);
                                 fi;
                             fi;
-                        fi;
+                        fi; 
                     od;
                 od;
             fi;
-            if t2=t3 and r2=r3 then
-                for k in [1..NumberRealForms(t1,r1)] do
-                    for k2 in [1..NumberRealForms(t4,r4)] do
-                        H1:=RealFormById(t1,r1,k);
-                        H2:=RealFormById(t2,r2,0);
-                        H3:=RealFormById(t4,r4,k2);
-                        rankRH:=RealRank(H1)+RealRank(H2)+RealRank(H3);
-                        dimpH:=NonCompactDimension(H1)+NonCompactDimension(H2)+NonCompactDimension(H3);
-                        dimkH:=CompactDimension(H1)+CompactDimension(H2)+CompactDimension(H3);  
-                        if rankRG> rankRH  then
-                            if dimpG>= dimpH then
-                                if dimkG> dimkH then
-                                    idH:=[rankRH,dimpH,t1,r1,k,t2,r2,0,t2,r2,0,t4,r4,k2];
-                                    Add(Sub,idH);
-                                fi;
-                            fi;
-                        fi;
-                    od;
-                od;
-            fi;
-            if t3=t4 and r3=r4 then
-                for k in [1..NumberRealForms(t1,r1)] do
-                    for j in [1..NumberRealForms(t2,r2)] do
-                        H1:=RealFormById(t1,r1,k);
-                        H2:=RealFormById(t2,r2,j);
-                        H3:=RealFormById(t3,r3,0);
-                        rankRH:=RealRank(H1)+RealRank(H2)+RealRank(H3);
-                        dimpH:=NonCompactDimension(H1)+NonCompactDimension(H2)+NonCompactDimension(H3);
-                        dimkH:=CompactDimension(H1)+CompactDimension(H2)+CompactDimension(H3);  
-                        if rankRG> rankRH  then
-                            if dimpG>= dimpH then
-                                if dimkG> dimkH then
-                                    idH:=[rankRH,dimpH,t1,r1,k,t2,r2,j,t3,r3,0,t3,r3,0];
-                                    Add(Sub,idH);
-                                fi;
-                            fi;
-                        fi;
-                    od;
-                od;
-            fi;
-            if t1=t2 and r1=r2 and t3=t4 and r3=r4 then            
-                H1:=RealFormById(t1,r1,0);
-                H2:=RealFormById(t3,r3,0);
+            if Length(Separate(Separate(str)[2]))>2 then
+                s1:=Separate(str)[1];
+                st1:=[s1[1]];
+                sr1:=IntChar(s1[2])-48;
+                s2:=Separate(s1)[2];
+                st2:=[s2[1]];
+                sr2:=IntChar(s2[2])-48;
+                H1:=RealFormById(st1,sr1,0);
+                H2:=RealFormById(st2,sr2,0); 
                 rankRH:=RealRank(H1)+RealRank(H2);
                 dimpH:=NonCompactDimension(H1)+NonCompactDimension(H2);
-                dimkH:=CompactDimension(H1)+CompactDimension(H2);  
+                dimkH:=CompactDimension(H1)+CompactDimension(H2);   
                 if rankRG> rankRH  then
                     if dimpG>= dimpH then
                         if dimkG> dimkH then
-                            idH:=[rankRH,dimpH,t1,r1,0,t2,r2,0,t3,r3,0,t4,r4,0];
+                            idH:=[rankRH,dimpH,st1,sr1,0,st1,sr1,0,st2,sr2,0,st2,sr2,0];
                             Add(Sub,idH);
                         fi;
                     fi;
-                fi;
+                fi; 
             fi;
         elif Length(str) =14 then
             for k in [1..NumberRealForms(t1,r1)] do
@@ -531,6 +413,41 @@ local G,H1,H2,H3,H4,H5,H6,H7,H8,GG,type, rank, id,idH, str,len,t1,r1,t2,r2,t3,r3
                     od;
                 od;
             od;
+            if Length(Separate(str))=2 then
+                s1:=Separate(str)[1];
+                st1:=[s1[1]];
+                sr1:=IntChar(s1[2])-48;
+                s2:=Separate(str)[2];
+                st2:=[s2[1]];
+                sr2:=IntChar(s2[2])-48;
+                s3:=Separate(str)[2];
+                st3:=[s3[4]];
+                sr3:=IntChar(s3[5])-48;
+                s4:=Separate(str)[2];
+                st4:=[s4[7]];
+                sr4:=IntChar(s4[8])-48;
+                for j in [1..NumberRealForms(st2,sr2)] do
+                    for k1 in [1..NumberRealForms(st3,sr3)] do
+                        for k2 in [1..NumberRealForms(st4,sr4)] do
+                            H1:=RealFormById(st1,sr1,0);
+                            H2:=RealFormById(st2,sr2,j); 
+                            H3:=RealFormById(st3,sr3,k1);
+                            H4:=RealFormById(st4,sr4,k2);
+                            rankRH:=RealRank(H1)+RealRank(H2)+RealRank(H3)+RealRank(H4);
+                            dimpH:=NonCompactDimension(H1)+NonCompactDimension(H2)+NonCompactDimension(H3)+NonCompactDimension(H4);
+                            dimkH:=CompactDimension(H1)+CompactDimension(H2)+CompactDimension(H3)+CompactDimension(H4);   
+                            if rankRG> rankRH  then
+                                if dimpG>= dimpH then
+                                    if dimkG> dimkH then
+                                        idH:=[rankRH,dimpH,st1,sr1,0,st1,sr1,0,st2,sr2,j,st3,sr3,k1,st4,sr4,k2];
+                                        Add(Sub,idH);
+                                    fi;
+                                fi;
+                            fi; 
+                        od;
+                    od;
+                od;
+            fi;
         elif Length(str) =17 then
             for k in [1..NumberRealForms(t1,r1)] do
                 for j in [1..NumberRealForms(t2,r2)] do
@@ -667,6 +584,557 @@ local G,H,L,GG,type, rank, id, rankRG, dimpG,rankRH, dimpH,rankRL,dimpL,i,j,Trip
         od;
     od;
     return Triples;
+end);
+
+###############################################################################
+InstallGlobalFunction( GetSymbolRealForm, function(arg)
+local type, rank, id, symb;
+    type:=arg[1];
+    rank:=arg[2];
+    id:=arg[3];
+    symb:=[];
+    if type="A" then
+        if rank=1 then
+            if id=0 then
+                symb:="sl(2,C)";
+            elif id=1 then
+                symb:="su(2)";
+            elif id=2 then
+                symb:="sl(2,R)";
+            fi;
+        elif rank=2 then
+            if id=0 then
+                symb:="sl(3,C)";
+            elif id=1 then
+                symb:="su(3)";
+            elif id=2 then
+                symb:="su(1,2)";
+            elif id=3 then
+                symb:="sl(3,R)";
+            fi; 
+        elif rank=3 then
+            if id=0 then
+                symb:="sl(4,C)";
+            elif id=1 then
+                symb:="su(4)";
+            elif id=2 then
+                symb:="su(1,3)";
+            elif id=3 then
+                symb:="su(2,2)";
+            elif id=4 then
+                symb:="sl(2,H)=su*(4)";
+            elif id=5 then
+                symb:="sl(4,R)";
+            fi;     
+        elif rank=4 then
+            if id=0 then
+                symb:="sl(5,C)";
+            elif id=1 then
+                symb:="su(5)";
+            elif id=2 then
+                symb:="su(1,4)";
+            elif id=3 then
+                symb:="su(2,3)";
+            elif id=4 then
+                symb:="sl(5,R)";
+            fi;     
+        elif rank=5 then
+            if id=0 then
+                symb:="sl(6,C)";
+            elif id=1 then
+                symb:="su(6)";
+            elif id=2 then
+                symb:="su(1,5)";
+            elif id=3 then
+                symb:="su(2,4)";
+            elif id=4 then
+                symb:="su(3,3)";
+            elif id=5 then
+                symb:="sl(3,H)=su*(6)";
+            elif id=6 then
+                symb:="sl(6,R)";
+            fi;     
+        elif rank=6 then
+            if id=0 then
+                symb:="sl(7,C)";
+            elif id=1 then
+                symb:="su(7)";
+            elif id=2 then
+                symb:="su(1,6)";
+            elif id=3 then
+                symb:="su(2,5)";
+            elif id=4 then
+                symb:="su(3,4)";
+            elif id=5 then
+                symb:="sl(7,R)";
+            fi;
+        elif rank=7 then
+            if id=0 then
+                symb:="sl(8,C)";
+            elif id=1 then
+                symb:="su(8)";
+            elif id=2 then
+                symb:="su(1,7)";
+            elif id=3 then
+                symb:="su(2,6)";
+            elif id=4 then
+                symb:="su(3,5)";
+            elif id=5 then
+                symb:="su(4,4)";
+            elif id=6 then
+                symb:="sl(4,H)=su*(8)";
+            elif id=7 then
+                symb:="sl(8,R)";
+            fi;
+        elif rank=8 then
+            if id=0 then
+                symb:="sl(9,C)";
+            elif id=1 then
+                symb:="su(9)";
+            elif id=2 then
+                symb:="su(1,8)";
+            elif id=3 then
+                symb:="su(2,7)";
+            elif id=4 then
+                symb:="su(3,6)";
+            elif id=5 then
+                symb:="su(4,5)";
+            elif id=6 then
+                symb:="sl(9,R)";
+            fi;
+        fi;
+    elif type="B" then
+        if rank=2 then
+            if id=0 then
+                symb:="so(5,C)";
+            elif id=1 then
+                symb:="so(5)";
+            elif id=2 then
+                symb:="so(2,3)";
+            elif id=3 then
+                symb:="so(4,1)";
+            fi;
+        elif rank=3 then
+            if id=0 then
+                symb:="so(7,C)";
+            elif id=1 then
+                symb:="so(7)";
+            elif id=2 then
+                symb:="so(2,5)";
+            elif id=3 then
+                symb:="so(4,3)";
+            elif id=4 then
+                symb:="so(6,1)";
+            fi;
+        elif rank=4 then
+            if id=0 then
+                symb:="so(9,C)";
+            elif id=1 then
+                symb:="so(9)";
+            elif id=2 then
+                symb:="so(2,7)";
+            elif id=3 then
+                symb:="so(4,5)";
+            elif id=4 then
+                symb:="so(6,3)";
+            elif id=5 then
+                symb:="so(8,1)";
+            fi;
+        elif rank=5 then
+            if id=0 then
+                symb:="so(11,C)";
+            elif id=1 then
+                symb:="so(11)";
+            elif id=2 then
+                symb:="so(2,9)";
+            elif id=3 then
+                symb:="so(4,7)";
+            elif id=4 then
+                symb:="so(6,5)";
+            elif id=5 then
+                symb:="so(8,3)";
+            elif id=6 then
+                symb:="so(10,1)";
+            fi;
+        elif rank=6 then
+            if id=0 then
+                symb:="so(13,C)";
+            elif id=1 then
+                symb:="so(13)";
+            elif id=2 then
+                symb:="so(2,11)";
+            elif id=3 then
+                symb:="so(4,9)";
+            elif id=4 then
+                symb:="so(6,7)";
+            elif id=5 then
+                symb:="so(8,5)";
+            elif id=6 then
+                symb:="so(10,3)";
+            elif id=7 then
+                symb:="so(12,1)";
+            fi;
+        elif rank=7 then
+            if id=0 then
+                symb:="so(15,C)";
+            elif id=1 then
+                symb:="so(15)";
+            elif id=2 then
+                symb:="so(2,13)";
+            elif id=3 then
+                symb:="so(4,11)";
+            elif id=4 then
+                symb:="so(6,9)";
+            elif id=5 then
+                symb:="so(8,7)";
+            elif id=6 then
+                symb:="so(10,5)";
+            elif id=7 then
+                symb:="so(12,3)";
+            elif id=8 then
+                symb:="so(14,1)";
+            fi;
+        elif rank=8 then
+            if id=0 then
+                symb:="so(17,C)";
+            elif id=1 then
+                symb:="so(17)";
+            elif id=2 then
+                symb:="so(2,15)";
+            elif id=3 then
+                symb:="so(4,13)";
+            elif id=4 then
+                symb:="so(6,11)";
+            elif id=5 then
+                symb:="so(8,9)";
+            elif id=6 then
+                symb:="so(10,7)";
+            elif id=7 then
+                symb:="so(12,5)";
+            elif id=8 then
+                symb:="so(14,3)";
+            elif id=9 then
+                symb:="so(16,1)";
+            fi;
+        fi;
+    elif type="C" then
+        if rank=3 then
+            if id=0 then
+                symb:="sp(3,C)/sp(6,C)";
+            elif id=1 then
+                symb:="sp(3)";
+            elif id=2 then
+                symb:="sp(1,2)";
+            elif id=3 then
+                symb:="sp(3,R)/sp(6,R)";
+            fi;
+        elif rank=4 then
+            if id=0 then
+                symb:="sp(4,C)/sp(8,C)";
+            elif id=1 then
+                symb:="sp(4)";
+            elif id=2 then
+                symb:="sp(1,3)";
+            elif id=3 then
+                symb:="sp(2,2)";
+            elif id=4 then
+                symb:="sp(4,R)/sp(8,R)";
+            fi;
+        elif rank=5 then
+            if id=0 then
+                symb:="sp(5,C)/sp(10,C)";
+            elif id=1 then
+                symb:="sp(5)";
+            elif id=2 then
+                symb:="sp(1,4)";
+            elif id=3 then
+                symb:="sp(2,3)";
+            elif id=4 then
+                symb:="sp(5,R)/sp(10,R)";
+            fi;
+        elif rank=6 then
+            if id=0 then
+                symb:="sp(6,C)/sp(12,C)";
+            elif id=1 then
+                symb:="sp(6)";
+            elif id=2 then
+                symb:="sp(1,5)";
+            elif id=3 then
+                symb:="sp(2,4)";
+            elif id=4 then
+                symb:="sp(3,3)";
+            elif id=5 then
+                symb:="sp(6,R)/sp(12,R)";
+            fi;
+        elif rank=7 then
+            if id=0 then
+                symb:="sp(7,C)/sp(14,C)";
+            elif id=1 then
+                symb:="sp(7)";
+            elif id=2 then
+                symb:="sp(1,6)";
+            elif id=3 then
+                symb:="sp(2,5)";
+            elif id=4 then
+                symb:="sp(3,4)";
+            elif id=5 then
+                symb:="sp(7,R)/sp(14,R)";
+            fi;
+        elif rank=8 then
+            if id=0 then
+                symb:="sp(8,C)/sp(16,C)";
+            elif id=1 then
+                symb:="sp(8)";
+            elif id=2 then
+                symb:="sp(1,7)";
+            elif id=3 then
+                symb:="sp(2,6)";
+            elif id=4 then
+                symb:="sp(3,5)";
+            elif id=5 then
+                symb:="sp(4,4)";
+            elif id=6 then
+                symb:="sp(8,R)/sp(16,R)";
+            fi;
+        fi;
+    elif type="D" then
+        if rank=4 then
+            if id=0 then
+                symb:="so(8,C)";
+            elif id=1 then
+                symb:="so(8)";
+            elif id=2 then
+                symb:="so*(8)=so(2,6)";
+            elif id=3 then
+                symb:="so(4,4)";
+            elif id=4 then
+                symb:="so(3,5)";
+            elif id=5 then
+                symb:="so(1,7)";
+            fi;
+        elif rank=5 then
+            if id=0 then
+                symb:="so(10,C)";
+            elif id=1 then
+                symb:="so(10)";
+            elif id=2 then
+                symb:="so(2,8)";
+            elif id=3 then
+                symb:="so(4,6)";
+            elif id=4 then
+                symb:="so*(10)";
+            elif id=5 then
+                symb:="so(9,1)";
+            elif id=6 then
+                symb:="so(3,7)";
+            elif id=7 then
+                symb:="so(5,5)";
+            fi;
+        elif rank=6 then
+            if id=0 then
+                symb:="so(12,C)";
+            elif id=1 then
+                symb:="so(12)";
+            elif id=2 then
+                symb:="so(2,10)";
+            elif id=3 then
+                symb:="so(4,8)";
+            elif id=4 then
+                symb:="so(6,6)";
+            elif id=5 then
+                symb:="so*(12)";
+            elif id=6 then
+                symb:="so(11,1)";
+            elif id=7 then
+                symb:="so(3,9)";
+            elif id=8 then
+                symb:="so(5,7)";
+            fi;
+        elif rank=7 then
+            if id=0 then
+                symb:="so(14,C)";
+            elif id=1 then
+                symb:="so(14)";
+            elif id=2 then
+                symb:="so(2,12)";
+            elif id=3 then
+                symb:="so(4,10)";
+            elif id=4 then
+                symb:="so(6,8)";
+            elif id=5 then
+                symb:="so*(14)";
+            elif id=6 then
+                symb:="so(13,1)";
+            elif id=7 then
+                symb:="so(3,11)";
+            elif id=8 then
+                symb:="so(5,9)";
+            elif id=9 then
+                symb:="so(7,7)";
+            fi;
+        elif rank=8 then
+            if id=0 then
+                symb:="so(16,C)";
+            elif id=1 then
+                symb:="so(16)";
+            elif id=2 then
+                symb:="so(2,14)";
+            elif id=3 then
+                symb:="so(4,12)";
+            elif id=4 then
+                symb:="so(6,10)";
+            elif id=5 then
+                symb:="so(8,8)";
+            elif id=6 then
+                symb:="so*(16)";
+            elif id=7 then
+                symb:="so(15,1)";
+            elif id=8 then
+                symb:="so(3,13)";
+            elif id=9 then
+                symb:="so(5,11)";
+            elif id=10 then
+                symb:="so(7,9)";
+            fi;
+        fi;
+    elif type="E" then
+        if rank=6 then
+            if id=0 then
+                symb:="E(6,C)";
+            elif id=1 then
+                symb:="E6(-78)";
+            elif id=2 then
+                symb:="EI=E6(6)";
+            elif id=3 then
+                symb:="EII=E6(2)";
+            elif id=4 then
+                symb:="EIII=E6(-14)";
+            elif id=5 then
+                symb:="EIV=E6(-26)";
+            fi;
+        elif rank=7 then
+            if id=0 then
+                symb:="E(7,C)";
+            elif id=1 then
+                symb:="E7(-133)";
+            elif id=2 then
+                symb:="EV=E7(7)";
+            elif id=3 then
+                symb:="EVII=E7(-25)";
+            elif id=4 then
+                symb:="EVI=E7(-5)";
+            fi;
+        elif rank=8 then
+            if id=0 then
+                symb:="E(8,C)";
+            elif id=1 then
+                symb:="E8(-248)";
+            elif id=2 then
+                symb:="EVIII=E8(8)";
+            elif id=3 then
+                symb:="EIX=E8(-24)";
+            fi;
+        fi;
+    elif type="F" then
+        if rank=4 then
+            if id=0 then
+                symb:="F(4,C)";
+            elif id=1 then
+                symb:="F4(-52)";
+            elif id=2 then
+                symb:="F4(4)";
+            elif id=3 then
+                symb:="F4(-20)";
+            fi;
+        fi;
+    elif type="G" then
+        if rank=2 then
+            if id=0 then
+                symb:="G(2,C)";
+            elif id=1 then
+                symb:="G2(-14)";
+            elif id=2 then
+                symb:="G2(2)";
+            fi;
+        fi;
+    fi;
+    return symb;
+end);
+
+###############################################################################
+InstallGlobalFunction( GetSymbolTriples, function(arg)
+local input, i,n,output, triple,t1,t2;
+    input:=arg[1];
+    n:=Length(input);
+    if n>0 then
+        for i in [1..n] do
+            triple:=input[i];
+            t1:=triple[1];
+            t2:=triple[2];
+            Print("h=");
+            Print(GetSymbolRealForm(t1[3],t1[4],t1[5]));
+            if (Length(t1))>5 then
+                Print("+");
+                Print(GetSymbolRealForm(t1[6],t1[7],t1[8]));
+            fi;
+            if (Length(t1))>8 then
+                Print("+");
+                Print(GetSymbolRealForm(t1[9],t1[10],t1[11]));
+            fi;
+            if (Length(t1))>11 then
+                Print("+");
+                Print(GetSymbolRealForm(t1[12],t1[13],t1[14]));
+            fi;
+            if (Length(t1))>14 then
+                Print("+");
+                Print(GetSymbolRealForm(t1[15],t1[16],t1[17]));
+            fi;
+            if (Length(t1))>17 then
+                Print("+");
+                Print(GetSymbolRealForm(t1[18],t1[19],t1[20]));
+            fi;
+            if (Length(t1))>20 then
+                Print("+");
+                Print(GetSymbolRealForm(t1[21],t1[22],t1[23]));
+            fi;
+            if (Length(t1))>23 then
+                Print("+");
+                Print(GetSymbolRealForm(t1[24],t1[25],t1[26]));
+            fi;
+            Print(", ");
+            Print("l=");
+            Print(GetSymbolRealForm(t2[3],t2[4],t2[5]));
+            if (Length(t2))>5 then
+                Print("+");
+                Print(GetSymbolRealForm(t2[6],t2[7],t2[8]));
+            fi;
+            if (Length(t2))>8 then
+                Print("+");
+                Print(GetSymbolRealForm(t2[9],t2[10],t2[11]));
+            fi;
+            if (Length(t2))>11 then
+                Print("+");
+                Print(GetSymbolRealForm(t2[12],t2[13],t2[14]));
+            fi;
+            if (Length(t2))>14 then
+                Print("+");
+                Print(GetSymbolRealForm(t2[15],t2[16],t2[17]));
+            fi;
+            if (Length(t2))>17 then
+                Print("+");
+                Print(GetSymbolRealForm(t2[18],t2[19],t2[20]));
+            fi;
+            if (Length(t2))>20 then
+                Print("+");
+                Print(GetSymbolRealForm(t2[21],t2[22],t2[23]));
+            fi;
+            if (Length(t2))>23 then
+                Print("+");
+                Print(GetSymbolRealForm(t2[24],t2[25],t2[26]));
+            fi;
+            Print(" \n");
+        od;
+    fi;
 end);
 
 #E  ckforms.gi  . . . . . . . . . . . . . . . . . . . . . . . . . . . ends here

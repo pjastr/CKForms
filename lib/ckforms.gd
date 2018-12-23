@@ -31,6 +31,8 @@ DeclareGlobalFunction( "CompactDimension" );
 
 DeclareGlobalFunction( "Simple" );
 
+DeclareGlobalFunction( "Separate" );
+
 DeclareGlobalFunction( "Simple2" );
 
 DeclareGlobalFunction( "NicerSemisimpleSubalgebras" );
@@ -42,4 +44,7 @@ DeclareGlobalFunction( "NicerPotentialSubalgebras" );
 
 
 DeclareGlobalFunction( "NicerPotentialTriples" );
+DeclareGlobalFunction( "GetSymbolRealForm" );
+
+DeclareGlobalFunction( "GetSymbolTriples" );
 #E  ckforms.gd  . . . . . . . . . . . . . . . . . . . . . . . . . . . ends here

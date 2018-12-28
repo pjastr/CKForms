@@ -33,15 +33,9 @@ DeclareGlobalFunction( "CompactDimension" );
 
 DeclareGlobalFunction( "Separate" );
 
-
-
 DeclareGlobalFunction( "NicerSemisimpleSubalgebras" );
 
-
-
-DeclareGlobalFunction( "PotentialSubalgebras" );
 DeclareGlobalFunction( "NicerPotentialSubalgebras" );
-
 
 DeclareGlobalFunction( "NicerPotentialTriples" );
 DeclareGlobalFunction( "GetSymbolRealForm" );

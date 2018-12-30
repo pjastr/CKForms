@@ -23,7 +23,5 @@ The manual of CKForms is contained in /pkg/CKForms-XX/doc. An online version can
 
 # Package using for documentation/preperation
 
-* [GapDOC](http://www.math.rwth-aachen.de/~Frank.Luebeck/GAPDoc/index.html)
 * [GAP Example Package](http://gap-packages.github.io/example/)
-* [GitHubPagesForGAP](https://github.com/gap-system/GitHubPagesForGAP)
-* [NoCK](https://pjastr.github.io/NoCK/)
+

@@ -12,7 +12,7 @@
 ##
 #F  NonCompactDimension(<G>)
 ##
-##  return noncompact dimension of G. (from NoCK package)
+##  return noncompact dimension of G. 
 ##
 DeclareGlobalFunction( "NonCompactDimension" );
 
@@ -35,10 +35,17 @@ DeclareGlobalFunction( "Separate" );
 
 DeclareGlobalFunction( "NicerSemisimpleSubalgebras" );
 
-DeclareGlobalFunction( "NicerPotentialSubalgebras" );
+DeclareGlobalFunction( "NumberOfSubalgebraClasses" );
 
-DeclareGlobalFunction( "NicerPotentialTriples" );
-DeclareGlobalFunction( "GetSymbolRealForm" );
+DeclareGlobalFunction( "PotentialSubalgebras" );
+
+DeclareGlobalFunction( "PotentialTriples" );
+DeclareGlobalFunction( "GetSymbolSimple" );
+DeclareGlobalFunction( "GetSymbolSemisimple" );
 
 DeclareGlobalFunction( "GetSymbolTriples" );
+
+DeclareGlobalFunction( "RealFormByTuple" );
+
+DeclareGlobalFunction( "CheckTuple" );
 #E  ckforms.gd  . . . . . . . . . . . . . . . . . . . . . . . . . . . ends here

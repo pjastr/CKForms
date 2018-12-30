@@ -1,0 +1,15 @@
+name: "GAP Package CKForms"
+output_dir: "."
+navbar:
+  title: "GAP Package CKForms"
+  left:
+    - text: "Homepage"
+      href: index.html
+    - text: "README"
+      href: readme.html
+    - text: "Manual"
+      href: manual.html
+
+
+
+

@@ -1,0 +1,49 @@
+---
+title: "GAP Package CKForms"
+output:
+  html_document: default
+  pdf_document: default
+---
+<style type="text/css">
+.title {
+  display: none;
+}
+
+#getting-started img {
+  margin-right: 10px;
+}
+
+</style>
+
+
+# GAP Package CKForms
+
+The CKForms package is used for finding standard compact Clifford-Klein forms of a non-compact homogeneous space $G/H$ where $G$ is a simple linear Lie group and $H$ is a non-compact reductive Lie subgroup of $G$.
+
+The current version of this package is version 0.3, released on 2018-12-29. For more information, please refer to the package manual. There is also a README file. 
+
+## Dependencies
+This package requires GAP version >=4.10.
+
+The following other GAP packages are needed:
+
+* sla >=1.2
+* CoReLG >=1.20
+
+## Authors
+
+* Maciej Bocheński, email: mabo@matman.uwm.edu.pl, Faculty of Mathematics and Computer Science, University of Warmia and Mazury in Olsztyn
+* Piotr Jastrzębski, email: piojas@matman.uwm.edu.pl, Faculty of Mathematics and Computer Science, University of Warmia and Mazury in Olsztyn
+* Aleksy Tralle, email: tralle@matman.uwm.edu.pl, Faculty of Mathematics and Computer Science, University of Warmia and Mazury in Olsztyn
+
+## Abstract
+In this package we develop algorithms generating triples $(\mathfrak{g},\mathfrak{h},\mathfrak{l})$ of lie algebras ($\mathfrak{h}$ and $\mathfrak{l}$ are subalgebras of $\mathfrak{g}$) such that the corresponding triples of Lie groups $(G,H,L)$ fulfill some necessary conditions required for triples inducing standard compact Clifford-Klein forms. The program is used for searching for standard compact Cliiford-Klein forms.
+
+
+## Copyright
+CKForms Package is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.
+
+## Feedback
+For bug reports, feature requests and suggestions, please use the issue tracker.
+
+

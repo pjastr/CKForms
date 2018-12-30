@@ -1,0 +1,35 @@
+---
+title: "CKForms - README"
+output:
+  html_document: default
+  pdf_document: default
+---
+<style type="text/css">
+.title {
+  display: none;
+}
+
+#getting-started img {
+  margin-right: 10px;
+}
+
+</style>
+
+
+# CKForms - README
+
+CKForms is a GAP4 package.
+
+REMARK: this package is written for GAP4.10 (and higher versions); the package SLA & CoReLG is required.
+
+##Instalation
+
+To install the package CKForms move the file  CKForms-XX.tar.gz (or any other archive containing it) into the pkg directory. Usually this will be the pkg subdirectory in your GAP4 installation. However, it is also possible to have a pkg subdirectory in a different place, see the section ‘Installing GAP Packages’ of the GAP4 reference manual for more information. Then simply unpack  CKForms-XX.tar.gz and your installation is complete. Now start GAP and type
+
+```bash
+gap> LoadPackage("CKForms");
+```
+
+to load the package. You will see the package banner.
+
+For details on how to use the CKForms package see the package documentation in the doc subdirectory (view its HTML version).

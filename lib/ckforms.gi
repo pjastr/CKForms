@@ -72,13 +72,30 @@ local G, s, sub, List1,List2, ListSub;
     List1:= List( sub, SemiSimpleType );
     List2:=Unique(List1);
     ListSub:=List2;
-    ListSub:=Immutable(ListSub);
     return ListSub;
+end);
+
+###############################################################################
+InstallGlobalFunction( NumberOfSubalgebraClasses, function(arg)
+local G,H, s, sub, List1, i, len,num;
+    G:=arg[1];
+    H:=arg[2];
+    s:= LieAlgebraAndSubalgebras(G);
+    sub:= s.subalgs;
+    List1:= List( sub, SemiSimpleType );
+    num:=0;
+    len:=Length(List1);
+    for i in [1..len] do
+        if List1[i]=H then
+            num:=num+1;
+        fi;
+    od;
+    return num;
 end);
 
 
 ###############################################################################
-InstallGlobalFunction( NicerPotentialSubalgebras, function(arg)
+InstallGlobalFunction( PotentialSubalgebras, function(arg)
 local G,H1,H2,H3,H4,H5,H6,H7,H8,GG,type, rank, id,idH, str,len,t1,r1,t2,r2,t3,r3,t4,r4,t5,r5,t6,r6,t7,r7,t8,r8,i,j,k,k1,k2,k3,k4,k5,k6,ListSub,Sub, rankRG, rankRH, dimpG, dimpH, dimkG, dimkH, s1, st1, sr1,s2,st2,sr2,s3,st3,sr3,s4,st4,sr4,s5,st5,sr5,s6,st6,sr6;
     type:=arg[1];
     rank:=arg[2];
@@ -711,7 +728,7 @@ end);
 
 
 ###############################################################################
-InstallGlobalFunction( NicerPotentialTriples, function(arg)
+InstallGlobalFunction( PotentialTriples, function(arg)
 local G,H,L,GG,type, rank, id, rankRG, dimpG,rankRH, dimpH,rankRL,dimpL,i,j,Triples,Hi,Lj ;
     type:=arg[1];
     rank:=arg[2];
@@ -720,7 +737,7 @@ local G,H,L,GG,type, rank, id, rankRG, dimpG,rankRH, dimpH,rankRL,dimpL,i,j,Trip
     GG:=Concatenation(type,String(rank));
     rankRG:=RealRank(G);
     dimpG:=NonCompactDimension(G);
-    H:=NicerPotentialSubalgebras(type,rank,id);
+    H:=PotentialSubalgebras(type,rank,id);
     L:=H;
     Triples:=[];
     for i in [1..Length(H)] do
@@ -740,7 +757,7 @@ local G,H,L,GG,type, rank, id, rankRG, dimpG,rankRH, dimpH,rankRL,dimpL,i,j,Trip
 end);
 
 ###############################################################################
-InstallGlobalFunction( GetSymbolRealForm, function(arg)
+InstallGlobalFunction( GetSymbolSimple, function(arg)
 local type, rank, id, symb;
     type:=arg[1];
     rank:=arg[2];
@@ -973,17 +990,17 @@ local type, rank, id, symb;
     elif type="C" then
         if rank=3 then
             if id=0 then
-                symb:="sp(6,C)";
+                symb:="sp(3,C)";
             elif id=1 then
                 symb:="sp(3)";
             elif id=2 then
                 symb:="sp(1,2)";
             elif id=3 then
-                symb:="sp(6,R)";
+                symb:="sp(3,R)";
             fi;
         elif rank=4 then
             if id=0 then
-                symb:="sp(8,C)";
+                symb:="sp(4,C)";
             elif id=1 then
                 symb:="sp(4)";
             elif id=2 then
@@ -991,11 +1008,11 @@ local type, rank, id, symb;
             elif id=3 then
                 symb:="sp(2,2)";
             elif id=4 then
-                symb:="sp(8,R)";
+                symb:="sp(4,R)";
             fi;
         elif rank=5 then
             if id=0 then
-                symb:="sp(10,C)";
+                symb:="sp(5,C)";
             elif id=1 then
                 symb:="sp(5)";
             elif id=2 then
@@ -1003,11 +1020,11 @@ local type, rank, id, symb;
             elif id=3 then
                 symb:="sp(2,3)";
             elif id=4 then
-                symb:="sp(10,R)";
+                symb:="sp(5,R)";
             fi;
         elif rank=6 then
             if id=0 then
-                symb:="sp(12,C)";
+                symb:="sp(6,C)";
             elif id=1 then
                 symb:="sp(6)";
             elif id=2 then
@@ -1017,11 +1034,11 @@ local type, rank, id, symb;
             elif id=4 then
                 symb:="sp(3,3)";
             elif id=5 then
-                symb:="sp(12,R)";
+                symb:="sp(6,R)";
             fi;
         elif rank=7 then
             if id=0 then
-                symb:="sp(14,C)";
+                symb:="sp(7,C)";
             elif id=1 then
                 symb:="sp(7)";
             elif id=2 then
@@ -1031,11 +1048,11 @@ local type, rank, id, symb;
             elif id=4 then
                 symb:="sp(3,4)";
             elif id=5 then
-                symb:="sp(14,R)";
+                symb:="sp(7,R)";
             fi;
         elif rank=8 then
             if id=0 then
-                symb:="sp(16,C)";
+                symb:="sp(8,C)";
             elif id=1 then
                 symb:="sp(8)";
             elif id=2 then
@@ -1047,7 +1064,7 @@ local type, rank, id, symb;
             elif id=5 then
                 symb:="sp(4,4)";
             elif id=6 then
-                symb:="sp(16,R)";
+                symb:="sp(8,R)";
             fi;
         fi;
     elif type="D" then
@@ -1215,6 +1232,35 @@ local type, rank, id, symb;
 end);
 
 ###############################################################################
+InstallGlobalFunction( GetSymbolSemisimple, function(arg)
+local t1, symb;
+    t1:=arg[1];
+    symb:=GetSymbolSimple(t1[3],t1[4],t1[5]);
+    if Length(t1)>5 then
+        symb:=Concatenation(symb,"+",GetSymbolSimple(t1[6],t1[7],t1[8]));
+    fi;
+    if Length(t1)>8 then
+        symb:=Concatenation(symb,"+",GetSymbolSimple(t1[9],t1[10],t1[11]));
+    fi;
+    if Length(t1)>11 then
+        symb:=Concatenation(symb,"+",GetSymbolSimple(t1[12],t1[13],t1[14]));
+    fi;
+    if Length(t1)>14 then
+        symb:=Concatenation(symb,"+",GetSymbolSimple(t1[15],t1[16],t1[17]));
+    fi;
+    if Length(t1)>17 then
+        symb:=Concatenation(symb,"+",GetSymbolSimple(t1[18],t1[19],t1[20]));
+    fi;
+    if Length(t1)>20 then
+        symb:=Concatenation(symb,"+",GetSymbolSimple(t1[21],t1[22],t1[23]));
+    fi;
+    if Length(t1)>23 then
+        symb:=Concatenation(symb,"+",GetSymbolSimple(t1[24],t1[25],t1[26]));
+    fi;
+    return symb;
+end);
+
+###############################################################################
 InstallGlobalFunction( GetSymbolTriples, function(arg)
 local input, i,n,output, triple,t1,t2;
     input:=arg[1];
@@ -1225,69 +1271,61 @@ local input, i,n,output, triple,t1,t2;
             t1:=triple[1];
             t2:=triple[2];
             Print("h=");
-            Print(GetSymbolRealForm(t1[3],t1[4],t1[5]));
-            if (Length(t1))>5 then
-                Print("+");
-                Print(GetSymbolRealForm(t1[6],t1[7],t1[8]));
-            fi;
-            if (Length(t1))>8 then
-                Print("+");
-                Print(GetSymbolRealForm(t1[9],t1[10],t1[11]));
-            fi;
-            if (Length(t1))>11 then
-                Print("+");
-                Print(GetSymbolRealForm(t1[12],t1[13],t1[14]));
-            fi;
-            if (Length(t1))>14 then
-                Print("+");
-                Print(GetSymbolRealForm(t1[15],t1[16],t1[17]));
-            fi;
-            if (Length(t1))>17 then
-                Print("+");
-                Print(GetSymbolRealForm(t1[18],t1[19],t1[20]));
-            fi;
-            if (Length(t1))>20 then
-                Print("+");
-                Print(GetSymbolRealForm(t1[21],t1[22],t1[23]));
-            fi;
-            if (Length(t1))>23 then
-                Print("+");
-                Print(GetSymbolRealForm(t1[24],t1[25],t1[26]));
-            fi;
+            Print(GetSymbolSemisimple(t1));
             Print(", ");
             Print("l=");
-            Print(GetSymbolRealForm(t2[3],t2[4],t2[5]));
-            if (Length(t2))>5 then
-                Print("+");
-                Print(GetSymbolRealForm(t2[6],t2[7],t2[8]));
-            fi;
-            if (Length(t2))>8 then
-                Print("+");
-                Print(GetSymbolRealForm(t2[9],t2[10],t2[11]));
-            fi;
-            if (Length(t2))>11 then
-                Print("+");
-                Print(GetSymbolRealForm(t2[12],t2[13],t2[14]));
-            fi;
-            if (Length(t2))>14 then
-                Print("+");
-                Print(GetSymbolRealForm(t2[15],t2[16],t2[17]));
-            fi;
-            if (Length(t2))>17 then
-                Print("+");
-                Print(GetSymbolRealForm(t2[18],t2[19],t2[20]));
-            fi;
-            if (Length(t2))>20 then
-                Print("+");
-                Print(GetSymbolRealForm(t2[21],t2[22],t2[23]));
-            fi;
-            if (Length(t2))>23 then
-                Print("+");
-                Print(GetSymbolRealForm(t2[24],t2[25],t2[26]));
-            fi;
+            Print(GetSymbolSemisimple(t2));
             Print(" \n");
         od;
     fi;
+end);
+
+###############################################################################
+InstallGlobalFunction( RealFormByTuple, function(arg)
+local t, G,H;
+    t:=arg[1];
+    G:=RealFormById(t[3],t[4],t[5]);
+    if Length(t)>5 then
+        H:=RealFormById(t[6],t[7],t[8]);
+        G:=DirectSumOfAlgebras(G,H);
+    fi;
+    if Length(t)>8 then
+        H:=RealFormById(t[9],t[10],t[11]);
+        G:=DirectSumOfAlgebras(G,H);
+    fi;
+    if Length(t)>11 then
+        H:=RealFormById(t[12],t[13],t[14]);
+        G:=DirectSumOfAlgebras(G,H);
+    fi;
+    if Length(t)>14 then
+        H:=RealFormById(t[15],t[16],t[17]);
+        G:=DirectSumOfAlgebras(G,H);
+    fi;
+    if Length(t)>17 then
+        H:=RealFormById(t[18],t[19],t[20]);
+        G:=DirectSumOfAlgebras(G,H);
+    fi;
+    if Length(t)>20 then
+        H:=RealFormById(t[21],t[22],t[23]);
+        G:=DirectSumOfAlgebras(G,H);
+    fi;
+    if Length(t)>23 then
+        H:=RealFormById(t[24],t[25],t[26]);
+        G:=DirectSumOfAlgebras(G,H);
+    fi;
+    return G;
+end);
+
+###############################################################################
+InstallGlobalFunction( CheckTuple, function(arg)
+local t, log, G;
+    t:=arg[1];
+    log:=false;
+    G:=RealFormByTuple(t);
+    if RealRank(G)=t[1] and NonCompactDimension(G)=t[2] then
+        log:=true;
+    fi;
+    return log;
 end);
 
 #E  ckforms.gi  . . . . . . . . . . . . . . . . . . . . . . . . . . . ends here

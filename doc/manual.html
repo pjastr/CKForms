@@ -208,8 +208,8 @@ $(document).ready(function () {
 
 <div id="notation-and-convention" class="section level2">
 <h2>Notation and convention</h2>
-<p>We use the notation of the theory of real Lie algebra from CoReLG Package, <span class="citation">(Dietrich, Faccin, and Graaf <a href="#ref-CoReLG">2014</a>)</span>.</p>
-<p>In this convention we denote lie algebras by <code>G</code>,<code>H</code>,… (big latin letters) and elements of Lie algebra by <code>g</code>,<code>h</code>,… (small latin letters). Every real simple Lie algebra is identified with triple <code>(type,rank, id)</code>. Be careful, <code>rank</code> is not always considered as the dimension of the Cartan subalgebra of the simple Lie algebra <code>G</code>. It is equal to the dimension of the Cartan subalgebra for all real simple Lie algebras excluding realifications (that is, complex simple lie algebras considered as real Lie algebras). For realifications <code>id</code> is equal to zero and <code>rank</code> is equal to half of the rank of the Lie algebra <code>G</code>. Consider the following example.</p>
+<p>In this manual we use small latin leters <code>g</code>,<code>h</code>,… or small gothic letters <span class="math inline">\(\mathfrak{g}\)</span>, <span class="math inline">\(\mathfrak{h}\)</span>,… for Lie algebras.</p>
+<p>We use the notation of the theory of real Lie algebra from CoReLG Package, <span class="citation">(Dietrich, Faccin, and Graaf <a href="#ref-CoReLG">2014</a>)</span>. Every real simple Lie algebra is identified with triple <code>(type,rank, id)</code>. Be careful, <code>rank</code> is not always considered as the dimension of the Cartan subalgebra of the simple Lie algebra <span class="math inline">\(\mathfrak{g}\)</span>. It is equal to the dimension of the Cartan subalgebra for all real simple Lie algebras excluding realifications (that is, complex simple lie algebras considered as real Lie algebras). For realifications <code>id</code> is equal to zero and <code>rank</code> is equal to half of the rank of the Lie algebra <span class="math inline">\(\mathfrak{g}\)</span>. Consider the following example.</p>
 <pre class="bash"><code>gap&gt; RealFormsInformation(&quot;E&quot;,6);
 
   There are 5 simple real forms with complexification E6
@@ -220,13 +220,13 @@ $(document).ready(function () {
     5 is EIV  = E6(-26), with k_0 of type f_4 (F4)
   Index &#39;0&#39; returns the realification of E6
 
-gap&gt; G:=RealFormById(&quot;E&quot;,6,2);
+gap&gt; g:=RealFormById(&quot;E&quot;,6,2);
 &lt;Lie algebra of dimension 78 over SqrtField&gt;
-gap&gt; Dimension(CartanSubalgebra(G));
+gap&gt; Dimension(CartanSubalgebra(g));
 6
-gap&gt; H:=RealFormById(&quot;E&quot;,6,0);
+gap&gt; h:=RealFormById(&quot;E&quot;,6,0);
 &lt;Lie algebra of dimension 156 over SqrtField&gt;
-gap&gt; Dimension(CartanSubalgebra(H));
+gap&gt; Dimension(CartanSubalgebra(h));
 12</code></pre>
 <p>Notice: we found some minor misspellings in the code:</p>
 <ul>
@@ -249,11 +249,11 @@ gap&gt; GetSymbolSimple(&quot;A&quot;,5,5);
 </code></pre>
 <div id="semisimple-real-lie-algebra" class="section level3">
 <h3>Semisimple real Lie algebra</h3>
-<p>We propose the following convention to represent a semisimple real Lie algebra of rank up to 8. Due to the limitations of GAP (see this), we represent a semisimple real Lie algebra <code>G</code> as tuple:</p>
+<p>We propose the following convention to represent a semisimple real Lie algebra of rank up to 8. Due to the limitations of GAP (see <a href="https://www.gap-system.org/Faq/faq.html#6.2">this</a>), we represent a semisimple real Lie algebra <span class="math inline">\(\mathfrak{g}\)</span> as tuple:</p>
 <pre><code>[real rank, non-compact dimension,type1,rank1,id1,...,typen,rankn,idn]</code></pre>
-<p>where <code>type1, rank1,id1</code> … <code>typen,rankn,idn</code> represent the corresponding triples of simple components of <code>G</code> (we use the fact that a semisimple algebra is a direct sum of simple algebras). The first two coordinates have been added to reduce multiple calculations.</p>
+<p>where <code>type1, rank1,id1</code> … <code>typen,rankn,idn</code> represent the corresponding triples of simple components of <span class="math inline">\(\mathfrak{g}\)</span> (we use the fact that a semisimple algebra is a direct sum of simple algebras). The first two coordinates in the input vector are given to reduce the complexity of the algorithm.</p>
 <pre><code>GetSymbolSemisimple(tuple)</code></pre>
-<p>The input is a tuple corresponding to the semisimple real Lie algebra <code>G</code> (represented in our notation). This function returns the symbol of <code>G</code>.</p>
+<p>The input is a tuple corresponding to the semisimple real Lie algebra <span class="math inline">\(\mathfrak{g}\)</span> (represented in our notation). This function returns the symbol of <span class="math inline">\(\mathfrak{g}\)</span>.</p>
 <p>Example:</p>
 <pre class="bash"><code>gap&gt; T:=[ 4, 10, &quot;A&quot;, 1, 2, &quot;A&quot;, 1, 2, &quot;B&quot;, 2, 2 ];
 [ 4, 10, &quot;A&quot;, 1, 2, &quot;A&quot;, 1, 2, &quot;B&quot;, 2, 2 ]
@@ -261,33 +261,33 @@ gap&gt; GetSymbolSemisimple(T);
 &quot;sl(2,R)+sl(2,R)+so(2,3)&quot;</code></pre>
 <p>If you are familiar with CoReLG Package <span class="citation">(Dietrich, Faccin, and Graaf <a href="#ref-CoReLG">2014</a>)</span> and want to work with Lie algebra object, we have created the following function:</p>
 <pre><code>RealFormByTuple(tuple)</code></pre>
-<p>The input is a tuple corresponding to a semisimple real Lie algebra <code>G</code> (represented in our notation). This function returns a Lie algebra object corresponding to <code>G</code>.</p>
+<p>The input is a tuple corresponding to a semisimple real Lie algebra <span class="math inline">\(\mathfrak{g}\)</span> (represented in our notation). This function returns a Lie algebra object corresponding to <span class="math inline">\(\mathfrak{g}\)</span>.</p>
 <p>Example:</p>
 <pre class="bash"><code>gap&gt; T:=[ 4, 10, &quot;A&quot;, 1, 2, &quot;A&quot;, 1, 2, &quot;B&quot;, 2, 2 ];
 [ 4, 10, &quot;A&quot;, 1, 2, &quot;A&quot;, 1, 2, &quot;B&quot;, 2, 2 ]
 gap&gt; GetSymbolSemisimple(T);
 &quot;sl(2,R)+sl(2,R)+so(2,3)&quot;
-gap&gt; G:=RealFormByTuple(T);
+gap&gt; g:=RealFormByTuple(T);
 &lt;Lie algebra of dimension 16 over SqrtField&gt;
-gap&gt; RealRank(G);
+gap&gt; RealRank(g);
 4
-gap&gt; NonCompactDimension(G);
+gap&gt; NonCompactDimension(g);
 10</code></pre>
 <p>The reverse operation is ineffective in GAP. The conversion takes a very long time. Often the program closes without warning. The only option is to manually search for the appropriate isomorphisms.</p>
 <p>Example:</p>
-<pre class="bash"><code>gap&gt; G:=RealFormById(&quot;E&quot;,6,3);
+<pre class="bash"><code>gap&gt; g:=RealFormById(&quot;E&quot;,6,3);
 &lt;Lie algebra of dimension 78 over SqrtField&gt;
 gap&gt; GetSymbolSimple(&quot;E&quot;,6,3);
 &quot;E6(2)&quot;
-gap&gt; K:=CartanDecomposition(G).K;
+gap&gt; k:=CartanDecomposition(G).K;
 &lt;Lie algebra of dimension 38 over SqrtField&gt;
 gap&gt; T:=[0,0,&quot;A&quot;,1,1,&quot;A&quot;,5,1];
 [ 0, 0, &quot;A&quot;, 1, 1, &quot;A&quot;, 5, 1 ]
 gap&gt; GetSymbolSemisimple(T);
 &quot;su(2)+su(6)&quot;
-gap&gt; L:=RealFormByTuple(T);
+gap&gt; l:=RealFormByTuple(T);
 &lt;Lie algebra of dimension 38 over SqrtField&gt;
-gap&gt; IsomorphismOfRealSemisimpleLieAlgebras(K,L);
+gap&gt; IsomorphismOfRealSemisimpleLieAlgebras(k,l);
 &lt;Lie algebra isomorphism between Lie algebras of dimension 38 over SqrtField&gt;</code></pre>
 <pre><code>CheckTuple(tuple)</code></pre>
 <p>The inupt is a tuple. This function returns “true” when the tuple corresponds to a real semisimple Lie algebra (it works only up to 8 simple components).</p>
@@ -306,7 +306,7 @@ false</code></pre>
 <pre><code>NicerSemisimpleSubalgebras(typeRank)</code></pre>
 <p>The function is based on <code>LieAlgebraAndSubalgebras</code> function from SLA Package <span class="citation">(Graaf <a href="#ref-sla">2018</a>)</span>. It returns a list of types of semisimple subalgebras of a complex Lie algebra (for a given type and rank). Remark: some types may correspond to several linearly equivalence subalgebras.</p>
 <pre><code>NumberOfSubalgebraClasses(typeRankG, typeRankH)</code></pre>
-<p>This function returns number of linearly equivalence classes for type of subalgebra (correspoding for second argument) in complex Lie algebra (correspoding to first argument).</p>
+<p>This function returns the number of linear equivalence classes for a given type of subalgebra (which is the value of the second argument) in complex Lie algebra (which is the value of the first argument).</p>
 <p>Example:</p>
 <pre class="bash"><code>gap&gt; NicerSemisimpleSubalgebras(&quot;E6&quot;);
 [ &quot;A1&quot;, &quot;A2&quot;, &quot;B2&quot;, &quot;G2&quot;, &quot;A1 A1&quot;, &quot;A1 A1 A1&quot;, &quot;A1 A2&quot;, &quot;A1 B2&quot;, &quot;A3&quot;, &quot;A1 G2&quot;, &quot;B3&quot;, 
@@ -320,30 +320,30 @@ gap&gt; NumberOfSubalgebraClasses(&quot;E6&quot;,&quot;A5&quot;);
 </div>
 <div id="function-for-real-lie-algebras" class="section level2">
 <h2>Function for real Lie algebras</h2>
-<pre><code>RealRank(G)</code></pre>
-<p>The input is a real Lie algebra <code>G</code> (as an object, not as a tuple). The output is the real rank of <code>G</code> (the dimension of the Cartan subalgebra of <code>G</code>).</p>
-<pre><code>NonCompactDimension(G)</code></pre>
-<p>The input is a real Lie algebra <code>G</code>. This function returns non-compact dimension of <code>G</code> (dimension of non-compact part from the Cartan decomposition for <code>G</code>).</p>
-<pre><code>CompactDimension(G)</code></pre>
-<p>The input is a real Lie algebra <code>G</code>. This function returns the compact dimension of <code>G</code> (dimension of the compact part of the Cartan decomposition for <code>G</code>).</p>
+<pre><code>RealRank(g)</code></pre>
+<p>The input is a real Lie algebra <span class="math inline">\(\mathfrak{g}\)</span> (as an object, not as a tuple). The output is the real rank of <span class="math inline">\(\mathfrak{g}\)</span> (the dimension of the Cartan subalgebra of <span class="math inline">\(\mathfrak{g}\)</span>).</p>
+<pre><code>NonCompactDimension(g)</code></pre>
+<p>The input is a real Lie algebra <span class="math inline">\(\mathfrak{g}\)</span>. This function returns non-compact dimension of <span class="math inline">\(\mathfrak{g}\)</span> (dimension of non-compact part from the Cartan decomposition for <span class="math inline">\(\mathfrak{g}\)</span>).</p>
+<pre><code>CompactDimension(g)</code></pre>
+<p>The input is a real Lie algebra <span class="math inline">\(\mathfrak{g}\)</span>. This function returns the compact dimension of <span class="math inline">\(\mathfrak{g}\)</span> (dimension of the compact part of the Cartan decomposition for <span class="math inline">\(\mathfrak{g}\)</span>).</p>
 <p>Example:</p>
-<pre class="bash"><code>gap&gt; G:=RealFormById(&quot;A&quot;,5,3);
+<pre class="bash"><code>gap&gt; g:=RealFormById(&quot;A&quot;,5,3);
 &lt;Lie algebra of dimension 35 over SqrtField&gt;
-gap&gt; RealRank(G);
+gap&gt; RealRank(g);
 2
-gap&gt; NonCompactDimension(G);
+gap&gt; NonCompactDimension(g);
 16
-gap&gt; CompactDimension(G);
+gap&gt; CompactDimension(g);
 19
 gap&gt; T:=[ 5, 19, &quot;A&quot;, 1, 2, &quot;A&quot;, 1, 2, &quot;A&quot;, 1, 1, &quot;D&quot;, 4, 4 ];
 [ 5, 19, &quot;A&quot;, 1, 2, &quot;A&quot;, 1, 2, &quot;A&quot;, 1, 1, &quot;D&quot;, 4, 4 ]
-gap&gt; G:=RealFormByTuple(T);
+gap&gt; g:=RealFormByTuple(T);
 &lt;Lie algebra of dimension 37 over SqrtField&gt;
-gap&gt; RealRank(G);
+gap&gt; RealRank(g);
 5
-gap&gt; NonCompactDimension(G);
+gap&gt; NonCompactDimension(g);
 19
-gap&gt; CompactDimension(G);
+gap&gt; CompactDimension(g);
 18
 </code></pre>
 </div>
@@ -351,9 +351,9 @@ gap&gt; CompactDimension(G);
 <h2>Function for generating potential subalgebras and triples</h2>
 <p>The following features are described in more detail in our article <span class="citation">(Bocheński, Jastrzębski, and Tralle <a href="#ref-BJT">2019</a>)</span>.</p>
 <pre><code>PotentialSubalgebras(&quot;type&quot;,rank,id)</code></pre>
-<p>The input is a triple corresponding to a simple real Lie algebra <code>G</code> of rank up to 8. This function returns a list of semisimple subalgebras in <code>G</code> as described in Algorithm 1 <span class="citation">(Bocheński, Jastrzębski, and Tralle <a href="#ref-BJT">2019</a>)</span>.</p>
+<p>The input is a triple corresponding to a simple real Lie algebra <span class="math inline">\(\mathfrak{g}\)</span> of rank up to 8. This function returns a list of semisimple subalgebras in <span class="math inline">\(\mathfrak{g}\)</span> as described in Algorithm 1 <span class="citation">(Bocheński, Jastrzębski, and Tralle <a href="#ref-BJT">2019</a>)</span>.</p>
 <pre><code>PotentialTriples(&quot;type&quot;,rank,id)</code></pre>
-<p>The input is a triple corresponding to a simple real Lie algebra <code>G</code> of rank up to 8. This function returns triples in <code>G</code> as described in Algorithm 2 <span class="citation">(Bocheński, Jastrzębski, and Tralle <a href="#ref-BJT">2019</a>)</span>.</p>
+<p>The input is a triple corresponding to a simple real Lie algebra <span class="math inline">\(\mathfrak{g}\)</span> of rank up to 8. This function returns triples in <span class="math inline">\(\mathfrak{g}\)</span> as described in Algorithm 2 <span class="citation">(Bocheński, Jastrzębski, and Tralle <a href="#ref-BJT">2019</a>)</span>.</p>
 <pre><code>GetSymbolTriples(output of previous function)</code></pre>
 <p>This function returns symbols of the triples (see example below).</p>
 <pre class="bash"><code>gap&gt; L:=PotentialTriples(&quot;E&quot;,6,2);

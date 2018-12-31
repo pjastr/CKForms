@@ -96,7 +96,7 @@ end);
 
 ###############################################################################
 InstallGlobalFunction( PotentialSubalgebras, function(arg)
-local G,H1,H2,H3,H4,H5,H6,H7,H8,GG,type, rank, id,idH, str,len,t1,r1,t2,r2,t3,r3,t4,r4,t5,r5,t6,r6,t7,r7,t8,r8,i,j,k,k1,k2,k3,k4,k5,k6,ListSub,Sub, rankRG, rankRH, dimpG, dimpH, dimkG, dimkH, s1, st1, sr1,s2,st2,sr2,s3,st3,sr3,s4,st4,sr4,s5,st5,sr5,s6,st6,sr6;
+local G,H1,H2,H3,H4,H5,H6,H7,H8,GG,type, rank, id,idH, str,len,t1,r1,t2,r2,t3,r3,t4,r4,t5,r5,t6,r6,t7,r7,t8,r8,i,j,k,k1,k2,k3,k4,k5,k6,ListSub,Sub, rankRG, rankRH, dimpG, dimpH, dimkG, dimkH, s1, st1, sr1,s2,st2,sr2,s3,st3,sr3,s4,st4,sr4,s5,st5,sr5,s6,st6,sr6,s7,st7,sr7;
     type:=arg[1];
     rank:=arg[2];
     id:=arg[3];
@@ -712,6 +712,170 @@ local G,H1,H2,H3,H4,H5,H6,H7,H8,GG,type, rank, id,idH, str,len,t1,r1,t2,r2,t3,r3
                     od;
                 od;
             od;
+            if Length(Separate(str))=2 then
+                s1:=Separate(str)[1];
+                st1:=[s1[1]];
+                sr1:=IntChar(s1[2])-48;
+                s2:=Separate(str)[2];
+                st2:=[s2[1]];
+                sr2:=IntChar(s2[2])-48;
+                s3:=Separate(str)[2];
+                st3:=[s3[4]];
+                sr3:=IntChar(s3[5])-48;
+                s4:=Separate(str)[2];
+                st4:=[s4[7]];
+                sr4:=IntChar(s4[8])-48;
+                s5:=Separate(str)[2];
+                st5:=[s5[10]];
+                sr5:=IntChar(s5[11])-48;
+                s6:=Separate(str)[2];
+                st6:=[s6[13]];
+                sr6:=IntChar(s6[14])-48;
+                s7:=Separate(str)[2];
+                st7:=[s7[16]];
+                sr7:=IntChar(s7[17])-48;
+                for j in [1..NumberRealForms(st2,sr2)] do
+                    for k1 in [1..NumberRealForms(st3,sr3)] do
+                        for k2 in [1..NumberRealForms(st4,sr4)] do
+                            for k3 in [1..NumberRealForms(st5,sr5)] do
+                                for k4 in [1..NumberRealForms(st6,sr6)] do
+                                    for k5 in [1..NumberRealForms(st7,sr7)] do
+                                        H1:=RealFormById(st1,sr1,0);
+                                        H2:=RealFormById(st2,sr2,j); 
+                                        H3:=RealFormById(st3,sr3,k1);
+                                        H4:=RealFormById(st4,sr4,k2);
+                                        H5:=RealFormById(st5,sr5,k3);
+                                        H6:=RealFormById(st6,sr6,k4);
+                                        H7:=RealFormById(st7,sr7,k5);
+                                        rankRH:=RealRank(H1)+RealRank(H2)+RealRank(H3)+RealRank(H4)+RealRank(H5)+RealRank(H6)+RealRank(H7);
+                                        dimpH:=NonCompactDimension(H1)+NonCompactDimension(H2)+NonCompactDimension(H3)+NonCompactDimension(H4)+NonCompactDimension(H5)+NonCompactDimension(H6)+NonCompactDimension(H7);
+                                        dimkH:=CompactDimension(H1)+CompactDimension(H2)+CompactDimension(H3)+CompactDimension(H4)+CompactDimension(H5)+CompactDimension(H6)+CompactDimension(H7);   
+                                        if rankRG> rankRH  then
+                                            if dimpG>= dimpH then
+                                                if dimkG> dimkH then
+                                                    idH:=[rankRH,dimpH,st1,sr1,0,st2,sr2,j,st3,sr3,k1,st4,sr4,k2,st5,sr5,k3,st6,sr6,k4,st7,sr7,k5];
+                                                    Add(Sub,idH);
+                                                fi;
+                                            fi;
+                                        fi; 
+                                    od;
+                                od;
+                            od;
+                        od;
+                    od;
+                od;
+            fi;
+            if Length(Separate(Separate(str)[2]))=2 then
+                s1:=Separate(str)[1];
+                st1:=[s1[1]];
+                sr1:=IntChar(s1[2])-48;
+                s2:=Separate(Separate(str)[2])[1];
+                st2:=[s2[1]];
+                sr2:=IntChar(s2[2])-48;
+                s3:=Separate(Separate(str)[2])[2];
+                st3:=[s3[1]];
+                sr3:=IntChar(s3[2])-48;
+                s4:=Separate(Separate(str)[2])[2];
+                st4:=[s4[4]];
+                sr4:=IntChar(s4[5])-48;
+                s5:=Separate(Separate(str)[2])[2];
+                st5:=[s5[7]];
+                sr5:=IntChar(s5[8])-48;
+                s6:=Separate(Separate(str)[2])[2];
+                st6:=[s6[10]];
+                sr6:=IntChar(s6[11])-48;
+                for k1 in [1..NumberRealForms(st3,sr3)] do
+                    for k2 in [1..NumberRealForms(st4,sr4)] do
+                        for k3 in [1..NumberRealForms(st5,sr5)] do
+                            for k4 in [1..NumberRealForms(st6,sr6)] do
+                                H1:=RealFormById(st1,sr1,0);
+                                H2:=RealFormById(st2,sr2,0);
+                                H3:=RealFormById(st3,sr3,k1);
+                                H4:=RealFormById(st4,sr4,k2);
+                                H5:=RealFormById(st5,sr5,k3);
+                                H6:=RealFormById(st6,sr6,k4);
+                                rankRH:=RealRank(H1)+RealRank(H2)+RealRank(H3)+RealRank(H4)+RealRank(H5)+RealRank(H6);
+                                dimpH:=NonCompactDimension(H1)+NonCompactDimension(H2)+NonCompactDimension(H3)+NonCompactDimension(H4)+NonCompactDimension(H5)+NonCompactDimension(H6);
+                                dimkH:=CompactDimension(H1)+CompactDimension(H2)+CompactDimension(H3)+CompactDimension(H4)+CompactDimension(H5)+CompactDimension(H6);   
+                                if rankRG> rankRH  then
+                                    if dimpG>= dimpH then
+                                        if dimkG> dimkH then
+                                            idH:=[rankRH,dimpH,st1,sr1,0,st2,sr2,0,st3,sr3,k1,st4,sr4,k2,st5,sr5,k3,st6,sr6,k4];
+                                            Add(Sub,idH);
+                                        fi;
+                                    fi;
+                                fi; 
+                            od;
+                        od;
+                    od;
+                od;
+            fi;
+            if Length(Separate(Separate(Separate(str)[2])[2]))=2 then
+                s1:=Separate(str)[1];
+                st1:=[s1[1]];
+                sr1:=IntChar(s1[2])-48;
+                s2:=Separate(Separate(str)[2])[1];
+                st2:=[s2[1]];
+                sr2:=IntChar(s2[2])-48;
+                s3:=Separate(Separate(Separate(str)[2])[2])[1];
+                st3:=[s3[1]];
+                sr3:=IntChar(s3[2])-48;
+                s4:=Separate(Separate(Separate(str)[2])[2])[2];
+                st4:=[s4[1]];
+                sr4:=IntChar(s4[2])-48;
+                s5:=Separate(Separate(Separate(str)[2])[2])[2];
+                st5:=[s5[4]];
+                sr5:=IntChar(s5[5])-48;
+                for k2 in [1..NumberRealForms(st4,sr4)] do
+                    for k3 in [1..NumberRealForms(st5,sr5)] do
+                        H1:=RealFormById(st1,sr1,0);
+                        H2:=RealFormById(st2,sr2,0);
+                        H3:=RealFormById(st3,sr3,0);
+                        H4:=RealFormById(st4,sr4,k2);
+                        H5:=RealFormById(st5,sr5,k3);
+                        rankRH:=RealRank(H1)+RealRank(H2)+RealRank(H3)+RealRank(H4)+RealRank(H5);
+                        dimpH:=NonCompactDimension(H1)+NonCompactDimension(H2)+NonCompactDimension(H3)+NonCompactDimension(H4)+NonCompactDimension(H5);
+                        dimkH:=CompactDimension(H1)+CompactDimension(H2)+CompactDimension(H3)+CompactDimension(H4)+CompactDimension(H5);   
+                        if rankRG> rankRH  then
+                            if dimpG>= dimpH then
+                                if dimkG> dimkH then
+                                    idH:=[rankRH,dimpH,st1,sr1,0,st2,sr2,0,st3,sr3,0,st4,sr4,k2,st5,sr5,k3];
+                                    Add(Sub,idH);
+                                fi;
+                            fi;
+                        fi; 
+                    od;
+                od;
+            fi;
+            if Length(Separate(Separate(Separate(Separate(str)[2])[2])[2]))=2 then
+                s1:=Separate(str)[1];
+                st1:=[s1[1]];
+                sr1:=IntChar(s1[2])-48;
+                s2:=Separate(Separate(str)[2])[1];
+                st2:=[s2[1]];
+                sr2:=IntChar(s2[2])-48;
+                s3:=Separate(Separate(Separate(str)[2])[2])[1];
+                st3:=[s3[1]];
+                sr3:=IntChar(s3[2])-48;
+                s4:=Separate(Separate(Separate(str)[2])[2])[2];
+                st4:=[s4[1]];
+                sr4:=IntChar(s4[2])-48;
+                H1:=RealFormById(st1,sr1,0);
+                H2:=RealFormById(st2,sr2,0);
+                H3:=RealFormById(st3,sr3,0);
+                H4:=RealFormById(st4,sr4,0);
+                rankRH:=RealRank(H1)+RealRank(H2)+RealRank(H3)+RealRank(H4);
+                dimpH:=NonCompactDimension(H1)+NonCompactDimension(H2)+NonCompactDimension(H3)+NonCompactDimension(H4);
+                dimkH:=CompactDimension(H1)+CompactDimension(H2)+CompactDimension(H3)+CompactDimension(H4);   
+                if rankRG> rankRH  then
+                    if dimpG>= dimpH then
+                        if dimkG> dimkH then
+                            idH:=[rankRH,dimpH,st1,sr1,0,st2,sr2,0,st3,sr3,0,st4,sr4,0];
+                            Add(Sub,idH);
+                        fi;
+                    fi;
+                fi; 
+            fi;
         fi;
         if RemInt(i,10)=0 then
             Print("Counting: ");

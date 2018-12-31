@@ -3,6 +3,7 @@ title: "CKForms - README"
 output:
   html_document: default
   pdf_document: default
+  word_document: default
 ---
 <style type="text/css">
 .title {
@@ -32,4 +33,4 @@ gap> LoadPackage("CKForms");
 
 to load the package. You will see the package banner.
 
-For details on how to use the CKForms package see the package documentation in the doc subdirectory (view its HTML version).
+For details on how to use the CKForms package see the package documentation in the doc subdirectory (view its [HTML version](https://pjastr.github.io/CKForms/)).

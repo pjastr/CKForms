@@ -39,11 +39,11 @@ DeclareGlobalFunction( "NumberOfSubalgebraClasses" );
 
 DeclareGlobalFunction( "PotentialSubalgebras" );
 
-DeclareGlobalFunction( "PotentialTriples" );
+DeclareGlobalFunction( "PotentialSubalgebraPairs" );
 DeclareGlobalFunction( "GetSymbolSimple" );
 DeclareGlobalFunction( "GetSymbolSemisimple" );
 
-DeclareGlobalFunction( "GetSymbolTriples" );
+DeclareGlobalFunction( "GetSymbolPairs" );
 
 DeclareGlobalFunction( "RealFormByTuple" );
 

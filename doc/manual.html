@@ -96,6 +96,9 @@ img {
 button.code-folding-btn:focus {
   outline: none;
 }
+summary {
+  display: list-item;
+}
 </style>
 
 
@@ -110,7 +113,6 @@ body {
   padding-top: 56px;
   margin-top: -56px;
 }
-
 .section h2 {
   padding-top: 56px;
   margin-top: -56px;
@@ -130,6 +132,43 @@ body {
 .section h6 {
   padding-top: 56px;
   margin-top: -56px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
 }
 </style>
 
@@ -151,18 +190,77 @@ $(document).ready(function () {
 });
 </script>
 
-
 <div class="container-fluid main-container">
 
 <!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
 <script>
 $(document).ready(function () {
   window.buildTabsets("TOC");
 });
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
 </script>
 
 <!-- code folding -->
-
 
 
 
@@ -347,16 +445,16 @@ gap&gt; CompactDimension(g);
 18
 </code></pre>
 </div>
-<div id="function-for-generating-potential-subalgebras-and-triples" class="section level2">
-<h2>Function for generating potential subalgebras and triples</h2>
+<div id="function-for-generating-potential-subalgebras-and-subalgebra-pairs" class="section level2">
+<h2>Function for generating potential subalgebras and subalgebra pairs</h2>
 <p>The following features are described in more detail in our article <span class="citation">(Bocheński, Jastrzębski, and Tralle <a href="#ref-BJT">2019</a>)</span>.</p>
 <pre><code>PotentialSubalgebras(&quot;type&quot;,rank,id)</code></pre>
 <p>The input is a triple corresponding to a simple real Lie algebra <span class="math inline">\(\mathfrak{g}\)</span> of rank up to 8. This function returns a list of semisimple subalgebras in <span class="math inline">\(\mathfrak{g}\)</span> as described in Algorithm 1 <span class="citation">(Bocheński, Jastrzębski, and Tralle <a href="#ref-BJT">2019</a>)</span>.</p>
-<pre><code>PotentialTriples(&quot;type&quot;,rank,id)</code></pre>
-<p>The input is a triple corresponding to a simple real Lie algebra <span class="math inline">\(\mathfrak{g}\)</span> of rank up to 8. This function returns triples in <span class="math inline">\(\mathfrak{g}\)</span> as described in Algorithm 2 <span class="citation">(Bocheński, Jastrzębski, and Tralle <a href="#ref-BJT">2019</a>)</span>.</p>
-<pre><code>GetSymbolTriples(output of previous function)</code></pre>
+<pre><code>PotentialSubalgebraPairs(&quot;type&quot;,rank,id)</code></pre>
+<p>The input is a triple corresponding to a simple real Lie algebra <span class="math inline">\(\mathfrak{g}\)</span> of rank up to 8. This function returns subalgebra pairs in <span class="math inline">\(\mathfrak{g}\)</span> as described in Algorithm 2 <span class="citation">(Bocheński, Jastrzębski, and Tralle <a href="#ref-BJT">2019</a>)</span>.</p>
+<pre><code>GetSymbolPairs(output of previous function)</code></pre>
 <p>This function returns symbols of the triples (see example below).</p>
-<pre class="bash"><code>gap&gt; L:=PotentialTriples(&quot;E&quot;,6,2);
+<pre class="bash"><code>gap&gt; L:=PotentialSubalgebraPairs(&quot;E&quot;,6,2);
 Counting: 30%
 Counting: 60%
 Counting: 90%
@@ -364,7 +462,7 @@ Counting completed.
 [ [ [ 2, 14, &quot;B&quot;, 4, 2 ], [ 4, 28, &quot;F&quot;, 4, 2 ] ], [ [ 2, 14, &quot;A&quot;, 5, 5 ], 
 [ 4, 28, &quot;F&quot;, 4, 2 ] ], [ [ 3, 21, &quot;D&quot;, 5, 6 ], [ 3, 21, &quot;D&quot;, 5, 6 ] ],
 [ [ 2, 14, &quot;A&quot;, 1, 1, &quot;A&quot;, 5, 5 ], [ 4, 28, &quot;F&quot;, 4, 2 ] ] ]
-gap&gt; GetSymbolTriples(L);
+gap&gt; GetSymbolPairs(L);
 h=so(2,7), l=F4(4)
 h=su*(6), l=F4(4)
 h=so(3,7), l=so(3,7)

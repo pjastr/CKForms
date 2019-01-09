@@ -892,8 +892,8 @@ end);
 
 
 ###############################################################################
-InstallGlobalFunction( PotentialTriples, function(arg)
-local G,H,L,GG,type, rank, id, rankRG, dimpG,rankRH, dimpH,rankRL,dimpL,i,j,Triples,Hi,Lj ;
+InstallGlobalFunction( PotentialSubalgebraPairs, function(arg)
+local G,H,L,GG,type, rank, id, rankRG, dimpG,rankRH, dimpH,rankRL,dimpL,i,j,pairs,Hi,Lj ;
     type:=arg[1];
     rank:=arg[2];
     id:=arg[3];
@@ -903,7 +903,7 @@ local G,H,L,GG,type, rank, id, rankRG, dimpG,rankRH, dimpH,rankRL,dimpL,i,j,Trip
     dimpG:=NonCompactDimension(G);
     H:=PotentialSubalgebras(type,rank,id);
     L:=H;
-    Triples:=[];
+    pairs:=[];
     for i in [1..Length(H)] do
         for j in [1.. Length(L)] do
             Hi:=H[i];
@@ -913,11 +913,11 @@ local G,H,L,GG,type, rank, id, rankRG, dimpG,rankRH, dimpH,rankRL,dimpL,i,j,Trip
             rankRL:=Lj[1];
             dimpL:=Lj[2];
             if rankRG= rankRH+rankRL and dimpG=dimpH+dimpL and dimpH<= dimpL then
-                Add(Triples,[Hi,Lj]);
+                Add(pairs,[Hi,Lj]);
             fi;
         od;
     od;
-    return Triples;
+    return pairs;
 end);
 
 ###############################################################################
@@ -1425,15 +1425,15 @@ local t1, symb;
 end);
 
 ###############################################################################
-InstallGlobalFunction( GetSymbolTriples, function(arg)
-local input, i,n,output, triple,t1,t2;
+InstallGlobalFunction( GetSymbolPairs, function(arg)
+local input, i,n,output, pairs,t1,t2;
     input:=arg[1];
     n:=Length(input);
     if n>0 then
         for i in [1..n] do
-            triple:=input[i];
-            t1:=triple[1];
-            t2:=triple[2];
+            pairs:=input[i];
+            t1:=pairs[1];
+            t2:=pairs[2];
             Print("h=");
             Print(GetSymbolSemisimple(t1));
             Print(", ");

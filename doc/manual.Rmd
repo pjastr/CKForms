@@ -220,7 +220,7 @@ gap> CompactDimension(g);
 
 ```
 
-## Function for generating potential subalgebras and triples
+## Function for generating potential subalgebras and subalgebra pairs
 
 The following features are described in more detail in our article [@BJT].
 
@@ -233,21 +233,21 @@ semisimple subalgebras in $\mathfrak{g}$ as described in Algorithm 1 [@BJT].
 
 
 ```
-PotentialTriples("type",rank,id)
+PotentialSubalgebraPairs("type",rank,id)
 ```
 
-The input is a triple corresponding to a simple real Lie algebra $\mathfrak{g}$ of rank up to 8. This function returns triples
+The input is a triple corresponding to a simple real Lie algebra $\mathfrak{g}$ of rank up to 8. This function returns subalgebra pairs
 in $\mathfrak{g}$ as described in Algorithm 2 [@BJT].
 
 
 ```
-GetSymbolTriples(output of previous function)
+GetSymbolPairs(output of previous function)
 ```
 
 This function returns symbols of the triples (see example below).
 
 ```bash
-gap> L:=PotentialTriples("E",6,2);
+gap> L:=PotentialSubalgebraPairs("E",6,2);
 Counting: 30%
 Counting: 60%
 Counting: 90%
@@ -255,7 +255,7 @@ Counting completed.
 [ [ [ 2, 14, "B", 4, 2 ], [ 4, 28, "F", 4, 2 ] ], [ [ 2, 14, "A", 5, 5 ], 
 [ 4, 28, "F", 4, 2 ] ], [ [ 3, 21, "D", 5, 6 ], [ 3, 21, "D", 5, 6 ] ],
 [ [ 2, 14, "A", 1, 1, "A", 5, 5 ], [ 4, 28, "F", 4, 2 ] ] ]
-gap> GetSymbolTriples(L);
+gap> GetSymbolPairs(L);
 h=so(2,7), l=F4(4)
 h=su*(6), l=F4(4)
 h=so(3,7), l=so(3,7)

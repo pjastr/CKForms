@@ -12,7 +12,7 @@ SetPackageInfo( rec(
 
 PackageName := "CKForms",
 Subtitle := "CKForms-Package for computitation for compact Clifford-Klein forms.",
-Version := "1.0",
+Version := "1.1",
 Date := "11/01/2019",
 
 PackageWWWHome :=

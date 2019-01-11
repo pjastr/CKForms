@@ -2,8 +2,8 @@
 title: "CKForms - README"
 output:
   html_document: default
-  pdf_document: default
   word_document: default
+  pdf_document: default
 ---
 <style type="text/css">
 .title {
@@ -21,7 +21,7 @@ output:
 
 CKForms is a GAP4 package.
 
-REMARK: this package is written for GAP4.10 (and higher versions); the package SLA & CoReLG is required.
+REMARK: this package is written for GAP 4.10 (and higher versions); the package SLA & CoReLG is required.
 
 ##Instalation
 

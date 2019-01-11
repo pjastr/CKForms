@@ -12,8 +12,8 @@ SetPackageInfo( rec(
 
 PackageName := "CKForms",
 Subtitle := "CKForms-Package for computitation for compact Clifford-Klein forms.",
-Version := "0.1",
-Date := "09/12/2018",
+Version := "1.0",
+Date := "11/01/2019",
 
 PackageWWWHome :=
    "https://pjastr.github.io/CKForms",
@@ -72,7 +72,7 @@ Persons := [
 ##    "other"         for all other packages
 ##
 # Status := "accepted",
-Status := "dev",
+Status := "deposited",
 
 ##  You must provide the next two entries if and only if the status is 
 ##  "accepted" because is was successfully refereed:
@@ -119,18 +119,18 @@ AbstractHTML :=
 ##  position of the files as in a standard GAP installation.
 ##  
 # in case of several help books give a list of such records here:
-PackageDoc := rec(
-  BookName  := "CKForms",
-  ArchiveURLSubset := ["doc"],
-  HTMLStart := "doc/chap0.html",
-  PDFFile   := "doc/manual.pdf",
-  # the path to the .six file used by GAP's help system
-  SixFile   := "doc/manual.six",
-  # a longer title of the book, this together with the book name should
-  # fit on a single text line (appears with the '?books' command in GAP)
-  # LongTitle := "Elementary Divisors of Integer Matrices",
-  LongTitle := "CKForms/Computitation for compact Clifford-Klein forms",
-),
+# PackageDoc := rec(
+#   BookName  := "CKForms",
+#   ArchiveURLSubset := ["doc"],
+#   HTMLStart := "doc/chap0.html",
+#   PDFFile   := "doc/manual.pdf",
+#   # the path to the .six file used by GAP's help system
+#   SixFile   := "doc/manual.six",
+#   # a longer title of the book, this together with the book name should
+#   # fit on a single text line (appears with the '?books' command in GAP)
+#   # LongTitle := "Elementary Divisors of Integer Matrices",
+#   LongTitle := "CKForms/Computitation for compact Clifford-Klein forms",
+# ),
 
 
 ##  Are there restrictions on the operating system for this package? Or does
@@ -143,7 +143,7 @@ Dependencies := rec(
   # these package are will be loaded if they are available,
   # but the current package will be loaded if they are not available
   # SuggestedOtherPackages := [],
-  SuggestedOtherPackages := [["GAPDoc", "1.5"]],
+  # SuggestedOtherPackages := [["GAPDoc", "1.5"]],
 
   # *Optional*: a list of pairs as above, denoting those needed packages
   # that must be completely loaded before loading of the current package
@@ -165,19 +165,7 @@ Dependencies := rec(
                       
 ),
 
-#AvailabilityTest := ReturnTrue,
-AvailabilityTest := function()
-  local path, file;
-    # test for existence of the compiled binary
-    path:= DirectoriesPackagePrograms( "ckforms" );
-    file:= Filename( path, "hello" );
-    if file = fail then
-      LogPackageLoadingMessage( PACKAGE_WARNING,
-          [ "The program `hello' is not compiled,",
-            "`HelloWorld()' is thus unavailable." ] );
-    fi;
-    return true;
-  end,
+AvailabilityTest := ReturnTrue,
 
 BannerString := Concatenation( 
     "----------------------------------------------------------------\n",
@@ -188,8 +176,6 @@ BannerString := Concatenation(
         r.FirstNames, " ", r.LastName  ) ), ", " ),".\n",
     
     "----------------------------------------------------------------\n" ),
-
-TestFile := "tst/testall.g",
 
 Keywords := ["real lie algebras", "clifford-klein forms"]
 

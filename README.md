@@ -2,7 +2,7 @@
 
 CKForms is a GAP4 package. 
 
-REMARK: this package is written for GAP4.8 (and higher versions); the package [SLA](http://www.science.unitn.it/~degraaf/sla.html) & [CoReLG](http://users.monash.edu/~heikod/corelg/) is required.
+REMARK: this package is written for GAP4.10 (and higher versions); the package [SLA](http://www.science.unitn.it/~degraaf/sla.html) & [CoReLG](http://users.monash.edu/~heikod/corelg/) is required.
 
 
 # Instalation

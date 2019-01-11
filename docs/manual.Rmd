@@ -3,8 +3,8 @@ title: "CKForms - Manual"
 link-citations: yes
 output:
   html_document: default
-  word_document: default
   pdf_document: default
+  word_document: default
 bibliography: bibliography.bib
 ---
 

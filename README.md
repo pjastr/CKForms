@@ -19,7 +19,7 @@ For details on how to use the CKForms package see the package documentation in t
 
 # Documentation
 
-The manual of CKForms is contained in /pkg/CKForms-XX/doc. An online version can be found [here](https://pjastr.github.io/CKForms/doc/chap0.html).
+The manual of CKForms is contained in /pkg/CKForms-XX/doc. An online version can be found [here](https://pjastr.github.io/CKForms/).
 
 # Package using for documentation/preperation
 

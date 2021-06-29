@@ -12,8 +12,8 @@ SetPackageInfo( rec(
 
 PackageName := "CKForms",
 Subtitle := "CKForms-Package for computitation for compact Clifford-Klein forms.",
-Version := "1.1",
-Date := "11/01/2019",
+Version := "2.0",
+Date := "06/06/2021",
 
 PackageWWWHome :=
    "https://pjastr.github.io/CKForms",

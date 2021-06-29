@@ -1,34 +1,48 @@
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 
 <head>
 
 <meta charset="utf-8" />
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
 
 
 <title>CKForms - Manual</title>
 
+<script src="site_libs/header-attrs-2.9/header-attrs.js"></script>
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
 
-<style type="text/css">code{white-space: pre;}</style>
 <style type="text/css">
-  pre:not([class]) {
-    background-color: white;
-  }
-</style>
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
 <script type="text/javascript">
 if (window.hljs) {
   hljs.configure({languages: []});
@@ -41,37 +55,32 @@ if (window.hljs) {
 
 
 
+
 <style type="text/css">
-h1 {
-  font-size: 34px;
+/* for pandoc --citeproc since 2.11 */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
 }
-h1.title {
-  font-size: 38px;
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
 }
-h2 {
-  font-size: 30px;
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
 }
-h3 {
-  font-size: 24px;
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
 }
-h4 {
-  font-size: 18px;
-}
-h5 {
-  font-size: 16px;
-}
-h6 {
-  font-size: 12px;
-}
-.table th:not([align]) {
-  text-align: left;
+div.csl-indent {
+  margin-left: 2em;
 }
 </style>
 
 
-</head>
 
-<body>
 
 <style type = "text/css">
 .main-container {
@@ -79,13 +88,8 @@ h6 {
   margin-left: auto;
   margin-right: auto;
 }
-code {
-  color: inherit;
-  background-color: rgba(0, 0, 0, 0.04);
-}
 img {
   max-width:100%;
-  height: auto;
 }
 .tabbed-pane {
   padding-top: 12px;
@@ -99,40 +103,13 @@ button.code-folding-btn:focus {
 summary {
   display: list-item;
 }
+pre code {
+  padding: 0;
+}
 </style>
 
 
 <style type="text/css">
-/* padding for bootstrap navbar */
-body {
-  padding-top: 51px;
-  padding-bottom: 40px;
-}
-/* offset scroll position for anchor links (for fixed navbar)  */
-.section h1 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
-.section h2 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
-.section h3 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
-.section h4 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
-.section h5 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
-.section h6 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
 .dropdown-submenu {
   position: relative;
 }
@@ -160,7 +137,7 @@ body {
   margin-right: -10px;
 }
 .dropdown-submenu:hover>a:after {
-  border-left-color: #ffffff;
+  border-left-color: #adb5bd;
 }
 .dropdown-submenu.pull-left {
   float: none;
@@ -172,7 +149,7 @@ body {
 }
 </style>
 
-<script>
+<script type="text/javascript">
 // manage active state of menu based on current page
 $(document).ready(function () {
   // active menu anchor
@@ -183,14 +160,25 @@ $(document).ready(function () {
   var menuAnchor = $('a[href="' + href + '"]');
 
   // mark it active
-  menuAnchor.parent().addClass('active');
+  menuAnchor.tab('show');
 
   // if it's got a parent navbar menu mark it active as well
   menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
 });
 </script>
-
-<div class="container-fluid main-container">
 
 <!-- tabsets -->
 
@@ -200,7 +188,6 @@ $(document).ready(function () {
   max-height: 500px;
   min-height: 44px;
   overflow-y: auto;
-  background: white;
   border: 1px solid #ddd;
   border-radius: 4px;
 }
@@ -236,6 +223,7 @@ $(document).ready(function () {
   border: none;
   display: inline-block;
   border-radius: 4px;
+  background-color: transparent;
 }
 
 .tabset-dropdown > .nav-tabs.nav-tabs-open > li {
@@ -248,20 +236,17 @@ $(document).ready(function () {
 }
 </style>
 
-<script>
-$(document).ready(function () {
-  window.buildTabsets("TOC");
-});
-
-$(document).ready(function () {
-  $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
-  });
-});
-</script>
-
 <!-- code folding -->
 
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
 
 
 
@@ -295,7 +280,7 @@ $(document).ready(function () {
   </div><!--/.container -->
 </div><!--/.navbar -->
 
-<div class="fluid-row" id="header">
+<div id="header">
 
 
 
@@ -307,7 +292,7 @@ $(document).ready(function () {
 <div id="notation-and-convention" class="section level2">
 <h2>Notation and convention</h2>
 <p>In this manual we use small latin leters <code>g</code>,<code>h</code>,… or small gothic letters <span class="math inline">\(\mathfrak{g}\)</span>, <span class="math inline">\(\mathfrak{h}\)</span>,… for Lie algebras.</p>
-<p>We use the notation of the theory of real Lie algebra from CoReLG Package, <span class="citation">(Dietrich, Faccin, and Graaf <a href="#ref-CoReLG">2014</a>)</span>. Every real simple Lie algebra is identified with triple <code>(type,rank, id)</code>. Be careful, <code>rank</code> is not always considered as the dimension of the Cartan subalgebra of the simple Lie algebra <span class="math inline">\(\mathfrak{g}\)</span>. It is equal to the dimension of the Cartan subalgebra for all real simple Lie algebras excluding realifications (that is, complex simple lie algebras considered as real Lie algebras). For realifications <code>id</code> is equal to zero and <code>rank</code> is equal to half of the rank of the Lie algebra <span class="math inline">\(\mathfrak{g}\)</span>. Consider the following example.</p>
+<p>We use the notation of the theory of real Lie algebra from CoReLG Package, <span class="citation">(<a href="#ref-CoReLG" role="doc-biblioref">Dietrich, Faccin, and Graaf 2014</a>)</span>. Every real simple Lie algebra is identified with triple <code>(type,rank, id)</code>. Be careful, <code>rank</code> is not always considered as the dimension of the Cartan subalgebra of the simple Lie algebra <span class="math inline">\(\mathfrak{g}\)</span>. It is equal to the dimension of the Cartan subalgebra for all real simple Lie algebras excluding realifications (that is, complex simple lie algebras considered as real Lie algebras). For realifications <code>id</code> is equal to zero and <code>rank</code> is equal to half of the rank of the Lie algebra <span class="math inline">\(\mathfrak{g}\)</span>. Consider the following example.</p>
 <pre class="bash"><code>gap&gt; RealFormsInformation(&quot;E&quot;,6);
 
   There are 5 simple real forms with complexification E6
@@ -328,15 +313,15 @@ gap&gt; Dimension(CartanSubalgebra(h));
 12</code></pre>
 <p>Notice: we found some minor misspellings in the code:</p>
 <ul>
-<li><p><code>&quot;D&quot;,4,5</code> is <span class="math inline">\(\mathfrak{so}(1,7)\)</span>,</p></li>
-<li><p><code>&quot;D&quot;,4,4</code> is <span class="math inline">\(\mathfrak{so}(3,5)\)</span>,</p></li>
-<li><p><code>&quot;E&quot;,7,3</code> is <span class="math inline">\(\mathfrak{e}_{7(-25)}=EVII\)</span>,</p></li>
-<li><p><code>&quot;E&quot;,7,4</code> is <span class="math inline">\(\mathfrak{e}_{7(-5)}=EVI\)</span>.</p></li>
+<li><p><code>"D",4,5</code> is <span class="math inline">\(\mathfrak{so}(1,7)\)</span>,</p></li>
+<li><p><code>"D",4,4</code> is <span class="math inline">\(\mathfrak{so}(3,5)\)</span>,</p></li>
+<li><p><code>"E",7,3</code> is <span class="math inline">\(\mathfrak{e}_{7(-25)}=EVII\)</span>,</p></li>
+<li><p><code>"E",7,4</code> is <span class="math inline">\(\mathfrak{e}_{7(-5)}=EVI\)</span>.</p></li>
 </ul>
-<p>Compare the real rank and the dimension of the real form with the data given in Table 4 in <span class="citation">(Onishchik and Vinberg <a href="#ref-onvin">1990</a>)</span>.</p>
+<p>Compare the real rank and the dimension of the real form with the data given in Table 4 in <span class="citation">(<a href="#ref-onvin" role="doc-biblioref">Onishchik and Vinberg 1990</a>)</span>.</p>
 <p>To make our work easier, we wrote our own function to recognize the triples.</p>
 <pre><code>GetSymbolSimple(type, rank, id)</code></pre>
-<p>This function works up to <code>rank</code> 8 and returns string corresponding to the symbol of real simple Lie algebra. Remark: we use notation from <span class="citation">(Helgason <a href="#ref-helgason">2001</a>)</span>.</p>
+<p>This function works up to <code>rank</code> 8 and returns string corresponding to the symbol of real simple Lie algebra. Remark: we use notation from <span class="citation">(<a href="#ref-helgason" role="doc-biblioref">Helgason 2001</a>)</span>.</p>
 <p>Example:</p>
 <pre class="bash"><code>gap&gt; GetSymbolSimple(&quot;C&quot;,4,4);
 &quot;sp(4,R)&quot;
@@ -357,7 +342,7 @@ gap&gt; GetSymbolSimple(&quot;A&quot;,5,5);
 [ 4, 10, &quot;A&quot;, 1, 2, &quot;A&quot;, 1, 2, &quot;B&quot;, 2, 2 ]
 gap&gt; GetSymbolSemisimple(T);
 &quot;sl(2,R)+sl(2,R)+so(2,3)&quot;</code></pre>
-<p>If you are familiar with CoReLG Package <span class="citation">(Dietrich, Faccin, and Graaf <a href="#ref-CoReLG">2014</a>)</span> and want to work with Lie algebra object, we have created the following function:</p>
+<p>If you are familiar with CoReLG Package <span class="citation">(<a href="#ref-CoReLG" role="doc-biblioref">Dietrich, Faccin, and Graaf 2014</a>)</span> and want to work with Lie algebra object, we have created the following function:</p>
 <pre><code>RealFormByTuple(tuple)</code></pre>
 <p>The input is a tuple corresponding to a semisimple real Lie algebra <span class="math inline">\(\mathfrak{g}\)</span> (represented in our notation). This function returns a Lie algebra object corresponding to <span class="math inline">\(\mathfrak{g}\)</span>.</p>
 <p>Example:</p>
@@ -402,7 +387,7 @@ false</code></pre>
 <div id="functions-for-complex-lie-algebra" class="section level2">
 <h2>Functions for complex Lie algebra</h2>
 <pre><code>NicerSemisimpleSubalgebras(typeRank)</code></pre>
-<p>The function is based on <code>LieAlgebraAndSubalgebras</code> function from SLA Package <span class="citation">(Graaf <a href="#ref-sla">2018</a>)</span>. It returns a list of types of semisimple subalgebras of a complex Lie algebra (for a given type and rank). Remark: some types may correspond to several linearly equivalence subalgebras.</p>
+<p>The function is based on <code>LieAlgebraAndSubalgebras</code> function from SLA Package <span class="citation">(<a href="#ref-sla" role="doc-biblioref">Graaf 2018</a>)</span>. It returns a list of types of semisimple subalgebras of a complex Lie algebra (for a given type and rank). Remark: some types may correspond to several linearly equivalence subalgebras.</p>
 <pre><code>NumberOfSubalgebraClasses(typeRankG, typeRankH)</code></pre>
 <p>This function returns the number of linear equivalence classes for a given type of subalgebra (which is the value of the second argument) in complex Lie algebra (which is the value of the first argument).</p>
 <p>Example:</p>
@@ -447,11 +432,11 @@ gap&gt; CompactDimension(g);
 </div>
 <div id="function-for-generating-potential-subalgebras-and-subalgebra-pairs" class="section level2">
 <h2>Function for generating potential subalgebras and subalgebra pairs</h2>
-<p>The following features are described in more detail in our article <span class="citation">(Bocheński, Jastrzębski, and Tralle <a href="#ref-BJT">2019</a>)</span>.</p>
+<p>The following features are described in more detail in our article <span class="citation">(<a href="#ref-BJT" role="doc-biblioref">Bocheński, Jastrzębski, and Tralle 2019</a>)</span>.</p>
 <pre><code>PotentialSubalgebras(&quot;type&quot;,rank,id)</code></pre>
-<p>The input is a triple corresponding to a simple real Lie algebra <span class="math inline">\(\mathfrak{g}\)</span> of rank up to 8. This function returns a list of semisimple subalgebras in <span class="math inline">\(\mathfrak{g}\)</span> as described in Algorithm 1 <span class="citation">(Bocheński, Jastrzębski, and Tralle <a href="#ref-BJT">2019</a>)</span>.</p>
+<p>The input is a triple corresponding to a simple real Lie algebra <span class="math inline">\(\mathfrak{g}\)</span> of rank up to 8. This function returns a list of semisimple subalgebras in <span class="math inline">\(\mathfrak{g}\)</span> as described in Algorithm 1 <span class="citation">(<a href="#ref-BJT" role="doc-biblioref">Bocheński, Jastrzębski, and Tralle 2019</a>)</span>.</p>
 <pre><code>PotentialSubalgebraPairs(&quot;type&quot;,rank,id)</code></pre>
-<p>The input is a triple corresponding to a simple real Lie algebra <span class="math inline">\(\mathfrak{g}\)</span> of rank up to 8. This function returns subalgebra pairs in <span class="math inline">\(\mathfrak{g}\)</span> as described in Algorithm 2 <span class="citation">(Bocheński, Jastrzębski, and Tralle <a href="#ref-BJT">2019</a>)</span>.</p>
+<p>The input is a triple corresponding to a simple real Lie algebra <span class="math inline">\(\mathfrak{g}\)</span> of rank up to 8. This function returns subalgebra pairs in <span class="math inline">\(\mathfrak{g}\)</span> as described in Algorithm 2 <span class="citation">(<a href="#ref-BJT" role="doc-biblioref">Bocheński, Jastrzębski, and Tralle 2019</a>)</span>.</p>
 <pre><code>GetSymbolPairs(output of previous function)</code></pre>
 <p>This function returns symbols of the triples (see example below).</p>
 <pre class="bash"><code>gap&gt; L:=PotentialSubalgebraPairs(&quot;E&quot;,6,2);
@@ -471,22 +456,22 @@ gap&gt; GetSymbolSimple(&quot;E&quot;,6,2);
 &quot;E6(6)&quot;</code></pre>
 </div>
 <div id="references" class="section level1 unnumbered">
-<h1>References</h1>
-<div id="refs" class="references">
-<div id="ref-BJT">
-<p>Bocheński, M., P. Jastrzębski, and A. Tralle. 2019. “Non-Existence of Standard Compact Clifford-Klein Forms of Homogeneous Spaces of Exceptional Lie Groups.” <a href="to appear" class="uri">to appear</a>.</p>
+<h1 class="unnumbered">References</h1>
+<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="ref-BJT" class="csl-entry">
+Bocheński, M., P. Jastrzębski, and A. Tralle. 2019. <span>“Non-Existence of Standard Compact Clifford-Klein Forms of Homogeneous Spaces of Exceptional Lie Groups.”</span>
 </div>
-<div id="ref-CoReLG">
-<p>Dietrich, H., P. Faccin, and W. A. de Graaf. 2014. “CoReLG, Computation with Real Lie Groups, Version 1.20.” <a href="http://users.monash.edu/~heikod/corelg/" class="uri">http://users.monash.edu/~heikod/corelg/</a>.</p>
+<div id="ref-CoReLG" class="csl-entry">
+Dietrich, H., P. Faccin, and W. A. de Graaf. 2014. <span>“CoReLG, Computation with Real Lie Groups, Version 1.20.”</span> <a href="http://users.monash.edu/~heikod/corelg/">http://users.monash.edu/~heikod/corelg/</a>.
 </div>
-<div id="ref-sla">
-<p>Graaf, W. A. de. 2018. “SLA, Simple Lie Algebras, Version 1.5.” <a href="http://www.science.unitn.it/~degraaf/sla.html" class="uri">http://www.science.unitn.it/~degraaf/sla.html</a>.</p>
+<div id="ref-sla" class="csl-entry">
+Graaf, W. A. de. 2018. <span>“SLA, Simple Lie Algebras, Version 1.5.”</span> <a href="http://www.science.unitn.it/~degraaf/sla.html">http://www.science.unitn.it/~degraaf/sla.html</a>.
 </div>
-<div id="ref-helgason">
-<p>Helgason, S. 2001. <em>Differential Geometry and Symmetric Spaces</em>. American Mathematical Society.</p>
+<div id="ref-helgason" class="csl-entry">
+Helgason, S. 2001. <em>Differential Geometry and Symmetric Spaces</em>. American Mathematical Society.
 </div>
-<div id="ref-onvin">
-<p>Onishchik, A., and E. Vinberg. 1990. <em>Lie Groups and Algebraic Groups</em>. Springer Series in Soviet Mathematics. Springer-Verlag Berlin Heidelberg.</p>
+<div id="ref-onvin" class="csl-entry">
+Onishchik, A., and E. Vinberg. 1990. <em>Lie Groups and Algebraic Groups</em>. Springer Series in Soviet Mathematics. Springer-Verlag Berlin Heidelberg.
 </div>
 </div>
 </div>
@@ -500,7 +485,7 @@ gap&gt; GetSymbolSimple(&quot;E&quot;,6,2);
 
 // add bootstrap table styles to pandoc tables
 function bootstrapStylePandocTables() {
-  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
 }
 $(document).ready(function () {
   bootstrapStylePandocTables();
@@ -508,6 +493,23 @@ $(document).ready(function () {
 
 
 </script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>

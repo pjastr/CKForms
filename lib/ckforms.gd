@@ -28,6 +28,35 @@ DeclareGlobalFunction( "RealRank" );
 
 #############################################################################
 ##
+#F  AHypRankForSimple(g)
+##
+##  The input is a real simple Lie algebra g (as an object, not as a tuple). The output
+##  is the a-hyperbolic rank of g.
+##
+DeclareGlobalFunction( "AHypRankForSimple" );
+
+
+#############################################################################
+##
+#F  GetIdFromName(g)
+##
+##  The input is a name of real simple Lie algebra g (output from NameRealForm -CoReLG). The output
+##  is the triple ID of g (eg. ["A",5,2]).
+##
+DeclareGlobalFunction( "GetIdFromName" );
+
+
+#############################################################################
+##
+#F  AHypRank(g)
+##
+##  The input is a real semisimple Lie algebra g (as an object, not as a tuple). The output
+##  is the a-hyperbolic rank of g.
+##
+DeclareGlobalFunction( "AHypRank" );
+
+#############################################################################
+##
 #F  CompactDimension(g)
 ##
 ##  The input is a real Lie algebra g. This function returns the compact dimension
@@ -128,6 +157,35 @@ DeclareGlobalFunction( "RealFormByTuple" );
 ##  to a real semisimple Lie algebra (it works only up to 8 simple components).
 ##
 DeclareGlobalFunction( "CheckTuple" );
+
+
+#############################################################################
+##
+#F  CheckRankConditions("type",rank,id)
+##
+##  The inupt is a absolutely simple real Lie group g. This function check
+##  rank conditions as in proof of theorem 6 in https://arxiv.org/pdf/2106.05777.pdf
+##
+DeclareGlobalFunction( "CheckRankConditions" );
+
+#############################################################################
+##
+#F  TechCoeff(vext)
+##
+##  The some thechnical function
+##  
+##
+DeclareGlobalFunction( "TechCoeff" );
+
+
+#############################################################################
+##
+#F  CheckProperSL2RAction("type",rank,id, indexmaxsub)
+##
+##  The inupt is a absolutely simple real Lie group g and index of max sub algebra with L3 true. This function check
+##  rank conditions as in proof of theorem 6  ang alg 1 in https://arxiv.org/pdf/2106.05777.pdf
+##
+DeclareGlobalFunction( "CheckProperSL2RAction" );
 
 
 #E  ckforms.gd  . . . . . . . . . . . . . . . . . . . . . . . . . . . ends here

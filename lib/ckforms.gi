@@ -24,6 +24,176 @@ local G, rr;
 end);
 
 ###############################################################################
+InstallGlobalFunction( AHypRankForSimple, function(arg)
+local G, id,out,name, namesplit;
+    G:=arg[1];
+        id := IdRealForm(G);
+        if id[1]="A" and id[2]=2 and id[3]=3 then
+            out:=1;
+        elif id[1]="A" and id[2]=2 and id[3]=0 then
+            out:=1;
+        elif id[1]="A" and id[2]=3 and id[3]=5 then
+            out:=2;
+        elif id[1]="A" and id[2]=3 and id[3]=0 then
+            out:=2;
+        elif id[1]="A" and id[2]=4 and id[3]=4 then
+            out:=2;
+        elif id[1]="A" and id[2]=4 and id[3]=0 then
+            out:=2;
+        elif id[1]="A" and id[2]=5 and id[3]=6 then
+            out:=3;
+        elif id[1]="A" and id[2]=5 and id[3]=0 then
+            out:=3;
+        elif id[1]="A" and id[2]=5 and id[3]=5 then
+            out:=1;
+        elif id[1]="A" and id[2]=6 and id[3]=5 then
+            out:=3;
+        elif id[1]="A" and id[2]=6 and id[3]=0 then
+            out:=3;
+        elif id[1]="A" and id[2]=7 and id[3]=7 then
+            out:=4;
+        elif id[1]="A" and id[2]=7 and id[3]=0 then
+            out:=4;
+        elif id[1]="A" and id[2]=7 and id[3]=6 then
+            out:=2;
+        elif id[1]="A" and id[2]=8 and id[3]=6 then
+            out:=4;
+        elif id[1]="A" and id[2]=8 and id[3]=0 then
+            out:=4;
+        elif id[1]="D" and id[2]=5 and id[3]=7 then
+            out:=4;
+        elif id[1]="D" and id[2]=5 and id[3]=0 then
+            out:=4;
+        elif id[1]="D" and id[2]=7 and id[3]=0 then
+            out:=6;
+        elif id[1]="D" and id[2]=7 and id[3]=0 then
+            out:=6;
+        elif id[1]="E" and id[2]=6 and id[3]=2 then
+            out:=4;
+        elif id[1]="E" and id[2]=6 and id[3]=5 then
+            out:=1;
+        elif id[1]="E" and id[2]=6 and id[3]=0 then
+            out:=4;
+        else
+            out:=RealRank(G);
+        fi;
+    return out;
+end);
+
+###############################################################################
+InstallGlobalFunction( GetIdFromName, function(arg)
+local sg, out,types, ranks,ids,j,k,l;
+    out:=[];
+    types:=["A","B","C","D","E","F","G"];
+    for j in [1..Length(types)] do
+        if (types[j]="A") then
+            ranks:=[1..8];
+            for k in ranks do
+                ids:=[0..NumberRealForms(types[j],k)];
+                for l in ids do
+                    if (corelg.namesimple([types[j],k,l])=arg[1]) then
+                        out:=[types[j],k,l];
+                        break;
+                    fi;
+                od;
+            od;
+        elif (types[j]="B") then
+            ranks:=[2..8];
+            for k in ranks do
+                ids:=[0..NumberRealForms(types[j],k)];
+                for l in ids do
+                    if (corelg.namesimple([types[j],k,l])=arg[1]) then
+                        out:=[types[j],k,l];
+                        break;
+                    fi;
+                od;
+            od;
+        elif (types[j]="C") then
+            ranks:=[3..8];
+            for k in ranks do
+                ids:=[0..NumberRealForms(types[j],k)];
+                for l in ids do
+                    if (corelg.namesimple([types[j],k,l])=arg[1]) then
+                        out:=[types[j],k,l];
+                        break;
+                    fi;
+                od;
+            od;
+        elif (types[j]="D") then
+            ranks:=[4..8];
+            for k in ranks do
+                ids:=[0..NumberRealForms(types[j],k)];
+                for l in ids do
+                    if (corelg.namesimple([types[j],k,l])=arg[1]) then
+                        out:=[types[j],k,l];
+                        break;
+                    fi;
+                od;
+            od;
+        elif (types[j]="E") then
+            ranks:=[6..8];
+            for k in ranks do
+                ids:=[0..NumberRealForms(types[j],k)];
+                for l in ids do
+                    if (corelg.namesimple([types[j],k,l])=arg[1]) then
+                        out:=[types[j],k,l];
+                        break;
+                    fi;
+                od;
+            od;
+        elif (types[j]="F") then
+            ranks:=[4];
+            for k in ranks do
+                ids:=[0..NumberRealForms(types[j],k)];
+                for l in ids do
+                    if (corelg.namesimple([types[j],k,l])=arg[1]) then
+                        out:=[types[j],k,l];
+                        break;
+                    fi;
+                od;
+            od;
+        elif (types[j]="G") then
+            ranks:=[2];
+            for k in ranks do
+                ids:=[0..NumberRealForms(types[j],k)];
+                for l in ids do
+                    if (corelg.namesimple([types[j],k,l])=arg[1]) then
+                        out:=[types[j],k,l];
+                        break;
+                    fi;
+                od;
+            od;
+        fi;
+    od;
+    return out;
+end);
+
+###############################################################################
+InstallGlobalFunction( AHypRank, function(arg)
+local G,out, name, namesplit,j, parts;
+    G:=arg[1];
+    name:=NameRealForm(G);
+    namesplit:=SplitString(name,"+");
+    if (Length(namesplit)=1) then
+        out:=AHypRankForSimple(G);
+    else
+        out:=0;
+        parts:=[1..Length(namesplit)];
+        if namesplit[Length(namesplit)]=" a torus of  1 non-compact dimensions" then
+            parts:=[1..Length(namesplit)-1];
+            namesplit[Length(namesplit)-1]:=ReplacedString(namesplit[Length(namesplit)-1]," ","");
+        elif namesplit[Length(namesplit)]=" a torus of 1 compact dimensions" then
+            parts:=[1..Length(namesplit)-1];
+            namesplit[Length(namesplit)-1]:=ReplacedString(namesplit[Length(namesplit)-1]," ","");
+        fi;
+        for j in parts do
+            out:=out+AHypRankForSimple(RealFormById(GetIdFromName(namesplit[j])));
+        od;
+    fi;
+    return out;
+end);
+
+###############################################################################
 InstallGlobalFunction( CompactDimension, function(arg)
 local G, K, dimK;
     G:=arg[1];
@@ -1490,6 +1660,132 @@ local t, log, G;
         log:=true;
     fi;
     return log;
+end);
+
+
+###############################################################################
+InstallGlobalFunction( CheckRankConditions, function(arg)
+local typeg, rankg, idg,maxs,G,H,l0,l1,l2,l3, index;
+    typeg:=arg[1];
+    rankg:=arg[2];
+    idg:=arg[3];
+    G:=RealFormById(typeg,rankg,idg);
+    maxs:=MaximalReductiveSubalgebras( typeg, rankg, idg );
+    Print("g=",NameRealForm(G)); 
+    Print(" | real rank g=",RealRank(G)) ;  
+    Print(" | a-hyp rank g=",AHypRank(G),"\n") ;
+    Print("----------------------------\n");
+    Print("L0-Calabi–Markus phenomenon real rank(g)=real rank(h)\n");  
+    Print("L1-ahyp rank(g)=ahyp rank(h)\n");  
+    Print("L2-ahyp rank(g)>real rank(h)\n");  
+    Print("L3-none of the above conditions is met\n");  
+    Print("----------------------------\n");
+    index:=1;
+    for H in maxs.subalgs do
+        Print("#",index,": h=",NameRealForm(H)," | real rank(h)=",RealRank(H)," | ahyp rank=",AHypRank(H),"\n");
+        l0:=RealRank(G)=RealRank(H);
+        Print(" | L0-",l0);
+        l1:=AHypRank(G)=AHypRank(H);
+        Print(" | L1-",l1);
+        l2:=AHypRank(G)>RealRank(H);
+        Print(" | L2-",l2);
+        l3:=not(l0 or l1 or l2);
+        Print(" | L3-",l3);
+        Print("\n");
+        Print("----\n");
+        index:=index+1;
+    od;
+end);
+
+###############################################################################
+InstallGlobalFunction( TechCoeff, function(arg)
+local jgc,jhc,out, out2,k,z2,l,w2,v2,j;
+    jgc:=arg[1];
+    jhc:=arg[2];
+    out:=[];
+    for j in [1..Length(Basis(jhc))] do
+        out2:=ListWithIdenticalEntries( Length(Basis(jgc)), 0 );;
+        v2:=String(Basis(jhc)[j]);
+        w2:=SplitString(v2,"+");
+        for k in [1..Length(w2)] do
+            z2:=w2[k];
+            z2:=SplitString(z2,"*");
+            for l in [1..Length(Basis(jgc))] do
+                if Length(z2)=1 and z2[1]=String(Basis(jgc)[l]) then
+                    out2[l]:=1;
+                elif Length(z2)=2 and z2[2]=String(Basis(jgc)[l]) then
+                    out2[l]:=EvalString(z2[1]);
+                fi;
+            od;
+        od;
+        Add(out,out2);
+    od;
+    return out;
+end);
+
+
+###############################################################################
+InstallGlobalFunction( CheckProperSL2RAction, function(arg)
+local idG,G,Hmax, idH,nHmax, idhc,j, idhc2,j2,GC,orbs,jg,B,W,ki,nb,nb2,s,sub,g,m,lo,i,subs,res,el,k,HC,jhc,jgc,hs,cf,orb,k2,res2,w,li;
+    idG:=[arg[1],arg[2],arg[3]];
+    Hmax:=MaximalReductiveSubalgebras(idG[1],idG[2],idG[3]).subalgs[arg[4]];
+    nHmax:=NameRealForm(Hmax);
+    nHmax:=SplitString(nHmax,"+");
+    idhc:=[];
+    for j in [1..Length(nHmax)] do
+        Add(idhc,GetIdFromName(nHmax[j]));
+    od;
+    idhc2:="";
+    for j in [1..Length(idhc)] do
+        if j>1 then
+            idhc2:=Concatenation(idhc2," ");
+        fi;
+        j2:=idhc[j];
+        idhc2:=Concatenation(idhc2,j2[1],String(j2[2]));
+    od;
+    GC:= SimpleLieAlgebra( idG[1],idG[2], Rationals );
+    orbs:= NilpotentOrbits(GC);;
+    jg:=CartanSubalgebra(GC);;
+    B:=Basis(GC);;
+    W:= WeylGroup( RootSystem( GC ) );;
+    lo:=Length(orbs);;
+    nb:=Length(B);;
+    nb2:=nb-idG[2]+1;;
+    s:= LieAlgebraAndSubalgebras( Concatenation(idG[1],String(idG[2])) );;
+    sub:= s.subalgs;;
+    g:= InclusionsGraph( Concatenation(idG[1],String(idG[2])) );;
+    m:= Filtered( g, x -> x[1]=0 );; i:= List( m, x -> x[2] );
+    subs:=List( sub{i}, SemiSimpleType );
+    res2:=[];
+    for k  in [1..Length(i)] do
+        if SemiSimpleType(sub[i[k]])= idhc2 then
+            Add(res2,i[k]);
+        fi;
+    od;
+    for k2 in [1..Length(res2)] do
+        HC:=sub[res2[k2]];
+        jhc:=CartanSubalgebra(HC);
+        jgc:=CartanSubalgebra(GC);
+        for i in [1..lo] do
+            hs:=SL2Triple( orbs[i] )[2];
+            cf:=Coefficients( B,hs){[nb2..nb]};
+            orb:= WeylOrbitIterator( W, cf );
+            k:=0;
+            while not IsDoneIterator( orb ) do
+                res:=TechCoeff(jgc,jhc);
+                w:= NextIterator( orb ); Add(res,List(w));
+                li:=RankMat(res);
+                if li <Length(res) then
+                    k:=k+1;
+                fi; 
+            od;
+            if k =0 then
+                Print("proper\n");
+                return;
+            fi;
+        od;
+    od;
+    Print("not proper\n");
 end);
 
 #E  ckforms.gi  . . . . . . . . . . . . . . . . . . . . . . . . . . . ends here

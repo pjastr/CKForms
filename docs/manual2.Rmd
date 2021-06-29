@@ -1,0 +1,14 @@
+---
+title: "CKForms - Manual for version 2.x"
+link-citations: yes
+output:
+  pdf_document: default
+  html_document: default
+  word_document: default
+bibliography: bibliography.bib
+---
+
+
+## Notation and convention
+
+To do

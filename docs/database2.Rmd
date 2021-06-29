@@ -1,0 +1,1026 @@
+---
+title: "CKForms - Database for version 2.x"
+link-citations: yes
+output:
+  html_document: default
+  pdf_document: default
+  word_document: default
+bibliography: bibliography.bib
+---
+
+
+## Type A
+
+```gap
+g=su(2) | real rank g=0 | a-hyp rank g=0
+----------------------------
+##################
+g=sl(2,R) | real rank g=1 | a-hyp rank g=1
+----------------------------
+##################
+g=su(3) | real rank g=0 | a-hyp rank g=0
+----------------------------
+#1: h=su(2) + a torus of 1 compact dimensions | real rank(h)=0 | ahyp rank=0
+ | L0-true | L1-true | L2-false | L3-false
+----
+#2: h=su(2) | real rank(h)=0 | ahyp rank=0
+ | L0-true | L1-true | L2-false | L3-false
+----
+##################
+g=su(1,2) | real rank g=1 | a-hyp rank g=1
+----------------------------
+#1: h=sl(2,R) + a torus of 1 compact dimensions | real rank(h)=1 | ahyp rank=1
+ | L0-true | L1-true | L2-false | L3-false
+----
+#2: h=su(2) + a torus of 1 compact dimensions | real rank(h)=0 | ahyp rank=0
+ | L0-false | L1-false | L2-true | L3-false
+----
+#3: h=sl(2,R) | real rank(h)=1 | ahyp rank=1
+ | L0-true | L1-true | L2-false | L3-false
+----
+##################
+g=sl(3,R) | real rank g=2 | a-hyp rank g=1
+----------------------------
+#1: h=sl(2,R) + a torus of  1 non-compact dimensions | real rank(h)=2 | ahyp rank=1
+ | L0-true | L1-true | L2-false | L3-false
+----
+#2: h=su(2) | real rank(h)=0 | ahyp rank=0
+ | L0-false | L1-false | L2-true | L3-false
+----
+#3: h=sl(2,R) | real rank(h)=1 | ahyp rank=1
+ | L0-false | L1-true | L2-false | L3-false
+----
+##################
+g=su(4) | real rank g=0 | a-hyp rank g=0
+----------------------------
+#1: h=su(3) + a torus of 1 compact dimensions | real rank(h)=0 | ahyp rank=0
+ | L0-true | L1-true | L2-false | L3-false
+----
+#2: h=so(5) | real rank(h)=0 | ahyp rank=0
+ | L0-true | L1-true | L2-false | L3-false
+----
+#3: h=su(2)+su(2) | real rank(h)=0 | ahyp rank=0
+ | L0-true | L1-true | L2-false | L3-false
+----
+#4: h=su(2)+su(2) + a torus of 1 compact dimensions | real rank(h)=0 | ahyp rank=0
+ | L0-true | L1-true | L2-false | L3-false
+----
+##################
+g=su(1,3) | real rank g=1 | a-hyp rank g=1
+----------------------------
+#1: h=su(1,2) + a torus of 1 compact dimensions | real rank(h)=1 | ahyp rank=1
+ | L0-true | L1-true | L2-false | L3-false
+----
+#2: h=su(3) + a torus of 1 compact dimensions | real rank(h)=0 | ahyp rank=0
+ | L0-false | L1-false | L2-true | L3-false
+----
+#3: h=sl(2,R)+su(2) + a torus of 1 compact dimensions | real rank(h)=1 | ahyp rank=1
+ | L0-true | L1-true | L2-false | L3-false
+----
+##################
+g=su(2,2) | real rank g=2 | a-hyp rank g=2
+----------------------------
+#1: h=su(1,2) + a torus of 1 compact dimensions | real rank(h)=1 | ahyp rank=1
+ | L0-false | L1-false | L2-true | L3-false
+----
+#2: h=su(1,2) + a torus of 1 compact dimensions | real rank(h)=1 | ahyp rank=1
+ | L0-false | L1-false | L2-true | L3-false
+----
+#3: h=so(2,3) | real rank(h)=2 | ahyp rank=2
+ | L0-true | L1-true | L2-false | L3-false
+----
+#4: h=so(4,1) | real rank(h)=1 | ahyp rank=1
+ | L0-false | L1-false | L2-true | L3-false
+----
+#5: h=sl(2,R)+su(2) | real rank(h)=1 | ahyp rank=1
+ | L0-false | L1-false | L2-true | L3-false
+----
+#6: h=sl(2,R)+sl(2,R) | real rank(h)=2 | ahyp rank=2
+ | L0-true | L1-true | L2-false | L3-false
+----
+#7: h=sl(2,C) + a torus of  1 non-compact dimensions | real rank(h)=2 | ahyp rank=1
+ | L0-true | L1-false | L2-false | L3-false
+----
+#8: h=sl(2,R)+sl(2,R) + a torus of 1 compact dimensions | real rank(h)=2 | ahyp rank=2
+ | L0-true | L1-true | L2-false | L3-false
+----
+#9: h=su(2)+su(2) + a torus of 1 compact dimensions | real rank(h)=0 | ahyp rank=0
+ | L0-false | L1-false | L2-true | L3-false
+----
+##################
+g=sl(2,H) | real rank g=1 | a-hyp rank g=1
+----------------------------
+#1: h=so(5) | real rank(h)=0 | ahyp rank=0
+ | L0-false | L1-false | L2-true | L3-false
+----
+#2: h=so(4,1) | real rank(h)=1 | ahyp rank=1
+ | L0-true | L1-true | L2-false | L3-false
+----
+#3: h=sl(2,R)+su(2) | real rank(h)=1 | ahyp rank=1
+ | L0-true | L1-true | L2-false | L3-false
+----
+#4: h=sl(2,C) + a torus of 1 compact dimensions | real rank(h)=1 | ahyp rank=1
+ | L0-true | L1-true | L2-false | L3-false
+----
+#5: h=su(2)+su(2) + a torus of  1 non-compact dimensions | real rank(h)=1 | ahyp rank=0
+ | L0-true | L1-false | L2-false | L3-false
+----
+##################
+g=sl(4,R) | real rank g=3 | a-hyp rank g=2
+----------------------------
+#1: h=sl(3,R) + a torus of  1 non-compact dimensions | real rank(h)=3 | ahyp rank=1
+ | L0-true | L1-false | L2-false | L3-false
+----
+#2: h=so(2,3) | real rank(h)=2 | ahyp rank=2
+ | L0-false | L1-true | L2-false | L3-false
+----
+#3: h=su(2)+su(2) | real rank(h)=0 | ahyp rank=0
+ | L0-false | L1-false | L2-true | L3-false
+----
+#4: h=sl(2,R)+sl(2,R) | real rank(h)=2 | ahyp rank=2
+ | L0-false | L1-true | L2-false | L3-false
+----
+#5: h=sl(2,R)+sl(2,R) + a torus of  1 non-compact dimensions | real rank(h)=3 | ahyp rank=2
+ | L0-true | L1-true | L2-false | L3-false
+----
+#6: h=sl(2,C) + a torus of 1 compact dimensions | real rank(h)=1 | ahyp rank=1
+ | L0-false | L1-false | L2-true | L3-false
+----
+#7: h=sl(2,C) + a torus of 1 compact dimensions | real rank(h)=1 | ahyp rank=1
+ | L0-false | L1-false | L2-true | L3-false
+----
+##################
+g=su(5) | real rank g=0 | a-hyp rank g=0
+----------------------------
+#1: h=su(2)+su(3) + a torus of 1 compact dimensions | real rank(h)=0 | ahyp rank=0
+ | L0-true | L1-true | L2-false | L3-false
+----
+#2: h=su(4) + a torus of 1 compact dimensions | real rank(h)=0 | ahyp rank=0
+ | L0-true | L1-true | L2-false | L3-false
+----
+#3: h=so(5) | real rank(h)=0 | ahyp rank=0
+ | L0-true | L1-true | L2-false | L3-false
+----
+##################
+g=su(1,4) | real rank g=1 | a-hyp rank g=1
+----------------------------
+#1: h=su(2)+su(1,2) + a torus of 1 compact dimensions | real rank(h)=1 | ahyp rank=1
+ | L0-true | L1-true | L2-false | L3-false
+----
+#2: h=sl(2,R)+su(3) + a torus of 1 compact dimensions | real rank(h)=1 | ahyp rank=1
+ | L0-true | L1-true | L2-false | L3-false
+----
+#3: h=su(1,3) + a torus of 1 compact dimensions | real rank(h)=1 | ahyp rank=1
+ | L0-true | L1-true | L2-false | L3-false
+----
+#4: h=su(4) + a torus of 1 compact dimensions | real rank(h)=0 | ahyp rank=0
+ | L0-false | L1-false | L2-true | L3-false
+----
+#5: h=so(4,1) | real rank(h)=1 | ahyp rank=1
+ | L0-true | L1-true | L2-false | L3-false
+----
+##################
+g=su(2,3) | real rank g=2 | a-hyp rank g=2
+----------------------------
+#1: h=sl(2,R)+su(1,2) + a torus of 1 compact dimensions | real rank(h)=2 | ahyp rank=2
+ | L0-true | L1-true | L2-false | L3-false
+----
+#2: h=su(2)+su(1,2) + a torus of 1 compact dimensions | real rank(h)=1 | ahyp rank=1
+ | L0-false | L1-false | L2-true | L3-false
+----
+#3: h=su(2)+su(3) + a torus of 1 compact dimensions | real rank(h)=0 | ahyp rank=0
+ | L0-false | L1-false | L2-true | L3-false
+----
+#4: h=su(2,2) + a torus of 1 compact dimensions | real rank(h)=2 | ahyp rank=2
+ | L0-true | L1-true | L2-false | L3-false
+----
+#5: h=su(1,3) + a torus of 1 compact dimensions | real rank(h)=1 | ahyp rank=1
+ | L0-false | L1-false | L2-true | L3-false
+----
+#6: h=so(2,3) | real rank(h)=2 | ahyp rank=2
+ | L0-true | L1-true | L2-false | L3-false
+----
+##################
+g=sl(5,R) | real rank g=4 | a-hyp rank g=2
+----------------------------
+#1: h=sl(2,R)+sl(3,R) + a torus of  1 non-compact dimensions | real rank(h)=4 | ahyp rank=2
+ | L0-true | L1-true | L2-false | L3-false
+----
+#2: h=sl(4,R) + a torus of  1 non-compact dimensions | real rank(h)=4 | ahyp rank=2
+ | L0-true | L1-true | L2-false | L3-false
+----
+#3: h=so(5) | real rank(h)=0 | ahyp rank=0
+ | L0-false | L1-false | L2-true | L3-false
+----
+#4: h=so(2,3) | real rank(h)=2 | ahyp rank=2
+ | L0-false | L1-true | L2-false | L3-false
+----
+#5: h=so(4,1) | real rank(h)=1 | ahyp rank=1
+ | L0-false | L1-false | L2-true | L3-false
+----
+##################
+```
+
+```gap
+g=su(6) | real rank g=0 | a-hyp rank g=0
+----------------------------
+#1: h=su(3)+su(3) + a torus of 1 compact dimensions | real rank(h)=0 | ahyp rank=0
+ | L0-true | L1-true | L2-false | L3-false
+----
+#2: h=su(2)+su(4) + a torus of 1 compact dimensions | real rank(h)=0 | ahyp rank=0
+ | L0-true | L1-true | L2-false | L3-false
+----
+#3: h=su(5) + a torus of 1 compact dimensions | real rank(h)=0 | ahyp rank=0
+ | L0-true | L1-true | L2-false | L3-false
+----
+#4: h=su(3) | real rank(h)=0 | ahyp rank=0
+ | L0-true | L1-true | L2-false | L3-false
+----
+#5: h=su(2)+su(3) | real rank(h)=0 | ahyp rank=0
+ | L0-true | L1-true | L2-false | L3-false
+----
+#6: h=su(4) | real rank(h)=0 | ahyp rank=0
+ | L0-true | L1-true | L2-false | L3-false
+----
+#7: h=sp(3) | real rank(h)=0 | ahyp rank=0
+ | L0-true | L1-true | L2-false | L3-false
+----
+##################
+g=su(1,5) | real rank g=1 | a-hyp rank g=1
+----------------------------
+#1: h=su(1,2)+su(3) + a torus of 1 compact dimensions | real rank(h)=1 | ahyp rank=1
+ | L0-true | L1-true | L2-false | L3-false
+----
+#2: h=su(2)+su(1,3) + a torus of 1 compact dimensions | real rank(h)=1 | ahyp rank=1
+ | L0-true | L1-true | L2-false | L3-false
+----
+#3: h=sl(2,R)+su(4) + a torus of 1 compact dimensions | real rank(h)=1 | ahyp rank=1
+ | L0-true | L1-true | L2-false | L3-false
+----
+#4: h=su(1,4) + a torus of 1 compact dimensions | real rank(h)=1 | ahyp rank=1
+ | L0-true | L1-true | L2-false | L3-false
+----
+#5: h=su(5) + a torus of 1 compact dimensions | real rank(h)=0 | ahyp rank=0
+ | L0-false | L1-false | L2-true | L3-false
+----
+#6: h=sl(2,H) | real rank(h)=1 | ahyp rank=1
+ | L0-true | L1-true | L2-false | L3-false
+----
+##################
+g=su(2,4) | real rank g=2 | a-hyp rank g=2
+----------------------------
+#1: h=su(1,2)+su(1,2) + a torus of 1 compact dimensions | real rank(h)=2 | ahyp rank=2
+ | L0-true | L1-true | L2-false | L3-false
+----
+#2: h=su(3)+su(1,2) + a torus of 1 compact dimensions | real rank(h)=1 | ahyp rank=1
+ | L0-false | L1-false | L2-true | L3-false
+----
+#3: h=su(2)+su(2,2) + a torus of 1 compact dimensions | real rank(h)=2 | ahyp rank=2
+ | L0-true | L1-true | L2-false | L3-false
+----
+#4: h=sl(2,R)+su(1,3) + a torus of 1 compact dimensions | real rank(h)=2 | ahyp rank=2
+ | L0-true | L1-true | L2-false | L3-false
+----
+#5: h=su(2)+su(4) + a torus of 1 compact dimensions | real rank(h)=0 | ahyp rank=0
+ | L0-false | L1-false | L2-true | L3-false
+----
+#6: h=su(2,3) + a torus of 1 compact dimensions | real rank(h)=2 | ahyp rank=2
+ | L0-true | L1-true | L2-false | L3-false
+----
+#7: h=su(1,4) + a torus of 1 compact dimensions | real rank(h)=1 | ahyp rank=1
+ | L0-false | L1-false | L2-true | L3-false
+----
+#8: h=su(1,2) | real rank(h)=1 | ahyp rank=1
+ | L0-false | L1-false | L2-true | L3-false
+----
+#9: h=su(2)+su(1,2) | real rank(h)=1 | ahyp rank=1
+ | L0-false | L1-false | L2-true | L3-false
+----
+#10: h=su(2,2) | real rank(h)=2 | ahyp rank=2
+ | L0-true | L1-true | L2-false | L3-false
+----
+#11: h=sp(1,2) | real rank(h)=1 | ahyp rank=1
+ | L0-false | L1-false | L2-true | L3-false
+----
+##################
+g=su(3,3) | real rank g=3 | a-hyp rank g=3
+----------------------------
+#1: h=sl(3,C) + a torus of  1 non-compact dimensions | real rank(h)=3 | ahyp rank=1
+ | L0-true | L1-false | L2-false | L3-false
+----
+#2: h=su(1,2)+su(1,2) + a torus of 1 compact dimensions | real rank(h)=2 | ahyp rank=2
+ | L0-false | L1-false | L2-true | L3-false
+----
+#3: h=su(3)+su(3) + a torus of 1 compact dimensions | real rank(h)=0 | ahyp rank=0
+ | L0-false | L1-false | L2-true | L3-false
+----
+#4: h=sl(2,R)+su(2,2) + a torus of 1 compact dimensions | real rank(h)=3 | ahyp rank=3
+ | L0-true | L1-true | L2-false | L3-false
+----
+#5: h=su(2)+su(1,3) + a torus of 1 compact dimensions | real rank(h)=1 | ahyp rank=1
+ | L0-false | L1-false | L2-true | L3-false
+----
+#6: h=su(2)+su(1,3) + a torus of 1 compact dimensions | real rank(h)=1 | ahyp rank=1
+ | L0-false | L1-false | L2-true | L3-false
+----
+#7: h=su(2,3) + a torus of 1 compact dimensions | real rank(h)=2 | ahyp rank=2
+ | L0-false | L1-false | L2-true | L3-false
+----
+#8: h=su(2,3) + a torus of 1 compact dimensions | real rank(h)=2 | ahyp rank=2
+ | L0-false | L1-false | L2-true | L3-false
+----
+#9: h=sl(2,R)+su(3) | real rank(h)=1 | ahyp rank=1
+ | L0-false | L1-false | L2-true | L3-false
+----
+#10: h=sl(2,R)+su(1,2) | real rank(h)=2 | ahyp rank=2
+ | L0-false | L1-false | L2-true | L3-false
+----
+#11: h=su(1,3) | real rank(h)=1 | ahyp rank=1
+ | L0-false | L1-false | L2-true | L3-false
+----
+#12: h=sl(4,R) | real rank(h)=3 | ahyp rank=2
+ | L0-true | L1-false | L2-false | L3-false
+----
+#13: h=sp(3,R) | real rank(h)=3 | ahyp rank=3
+ | L0-true | L1-true | L2-false | L3-false
+----
+##################
+g=sl(3,H) | real rank g=2 | a-hyp rank g=1
+----------------------------
+#1: h=sl(3,C) + a torus of 1 compact dimensions | real rank(h)=2 | ahyp rank=1
+ | L0-true | L1-true | L2-false | L3-false
+----
+#2: h=su(2)+sl(2,H) + a torus of  1 non-compact dimensions | real rank(h)=2 | ahyp rank=1
+ | L0-true | L1-true | L2-false | L3-false
+----
+#3: h=su(2)+sl(3,R) | real rank(h)=2 | ahyp rank=1
+ | L0-true | L1-true | L2-false | L3-false
+----
+#4: h=su(1,3) | real rank(h)=1 | ahyp rank=1
+ | L0-false | L1-true | L2-false | L3-false
+----
+#5: h=sp(3) | real rank(h)=0 | ahyp rank=0
+ | L0-false | L1-false | L2-true | L3-false
+----
+#6: h=sp(1,2) | real rank(h)=1 | ahyp rank=1
+ | L0-false | L1-true | L2-false | L3-false
+----
+##################
+g=sl(6,R) | real rank g=5 | a-hyp rank g=3
+----------------------------
+#1: h=sl(3,R)+sl(3,R) + a torus of  1 non-compact dimensions | real rank(h)=5 | ahyp rank=2
+ | L0-true | L1-false | L2-false | L3-false
+----
+#2: h=sl(3,C) + a torus of 1 compact dimensions | real rank(h)=2 | ahyp rank=1
+ | L0-false | L1-false | L2-true | L3-false
+----
+#3: h=sl(2,R)+sl(4,R) + a torus of  1 non-compact dimensions | real rank(h)=5 | ahyp rank=3
+ | L0-true | L1-true | L2-false | L3-false
+----
+#4: h=sl(5,R) + a torus of  1 non-compact dimensions | real rank(h)=5 | ahyp rank=2
+ | L0-true | L1-false | L2-false | L3-false
+----
+#5: h=sl(3,R) | real rank(h)=2 | ahyp rank=1
+ | L0-false | L1-false | L2-true | L3-false
+----
+#6: h=sl(2,R)+sl(3,R) | real rank(h)=3 | ahyp rank=2
+ | L0-false | L1-false | L2-false | L3-true
+----
+#7: h=su(4) | real rank(h)=0 | ahyp rank=0
+ | L0-false | L1-false | L2-true | L3-false
+----
+#8: h=su(2,2) | real rank(h)=2 | ahyp rank=2
+ | L0-false | L1-false | L2-true | L3-false
+----
+#9: h=sl(2,H) | real rank(h)=1 | ahyp rank=1
+ | L0-false | L1-false | L2-true | L3-false
+----
+#10: h=sl(4,R) | real rank(h)=3 | ahyp rank=2
+ | L0-false | L1-false | L2-false | L3-true
+----
+#11: h=sp(3,R) | real rank(h)=3 | ahyp rank=3
+ | L0-false | L1-true | L2-false | L3-false
+----
+##################
+g=su(7) | real rank g=0 | a-hyp rank g=0
+----------------------------
+#1: h=su(3)+su(4) + a torus of 1 compact dimensions | real rank(h)=0 | ahyp rank=0
+ | L0-true | L1-true | L2-false | L3-false
+----
+#2: h=su(2)+su(5) + a torus of 1 compact dimensions | real rank(h)=0 | ahyp rank=0
+ | L0-true | L1-true | L2-false | L3-false
+----
+#3: h=su(6) + a torus of 1 compact dimensions | real rank(h)=0 | ahyp rank=0
+ | L0-true | L1-true | L2-false | L3-false
+----
+#4: h=so(7) | real rank(h)=0 | ahyp rank=0
+ | L0-true | L1-true | L2-false | L3-false
+----
+##################
+g=su(1,6) | real rank g=1 | a-hyp rank g=1
+----------------------------
+#1: h=su(1,2)+su(4) + a torus of 1 compact dimensions | real rank(h)=1 | ahyp rank=1
+ | L0-true | L1-true | L2-false | L3-false
+----
+#2: h=su(3)+su(1,3) + a torus of 1 compact dimensions | real rank(h)=1 | ahyp rank=1
+ | L0-true | L1-true | L2-false | L3-false
+----
+#3: h=su(2)+su(1,4) + a torus of 1 compact dimensions | real rank(h)=1 | ahyp rank=1
+ | L0-true | L1-true | L2-false | L3-false
+----
+#4: h=sl(2,R)+su(5) + a torus of 1 compact dimensions | real rank(h)=1 | ahyp rank=1
+ | L0-true | L1-true | L2-false | L3-false
+----
+#5: h=su(1,5) + a torus of 1 compact dimensions | real rank(h)=1 | ahyp rank=1
+ | L0-true | L1-true | L2-false | L3-false
+----
+#6: h=su(6) + a torus of 1 compact dimensions | real rank(h)=0 | ahyp rank=0
+ | L0-false | L1-false | L2-true | L3-false
+----
+#7: h=so(6,1) | real rank(h)=1 | ahyp rank=1
+ | L0-true | L1-true | L2-false | L3-false
+----
+##################
+g=su(2,5) | real rank g=2 | a-hyp rank g=2
+----------------------------
+#1: h=su(1,2)+su(1,3) + a torus of 1 compact dimensions | real rank(h)=2 | ahyp rank=2
+ | L0-true | L1-true | L2-false | L3-false
+----
+#2: h=su(3)+su(2,2) + a torus of 1 compact dimensions | real rank(h)=2 | ahyp rank=2
+ | L0-true | L1-true | L2-false | L3-false
+----
+#3: h=su(1,2)+su(4) + a torus of 1 compact dimensions | real rank(h)=1 | ahyp rank=1
+ | L0-false | L1-false | L2-true | L3-false
+----
+#4: h=su(2)+su(2,3) + a torus of 1 compact dimensions | real rank(h)=2 | ahyp rank=2
+ | L0-true | L1-true | L2-false | L3-false
+----
+#5: h=sl(2,R)+su(1,4) + a torus of 1 compact dimensions | real rank(h)=2 | ahyp rank=2
+ | L0-true | L1-true | L2-false | L3-false
+----
+#6: h=su(2)+su(5) + a torus of 1 compact dimensions | real rank(h)=0 | ahyp rank=0
+ | L0-false | L1-false | L2-true | L3-false
+----
+#7: h=su(2,4) + a torus of 1 compact dimensions | real rank(h)=2 | ahyp rank=2
+ | L0-true | L1-true | L2-false | L3-false
+----
+#8: h=su(1,5) + a torus of 1 compact dimensions | real rank(h)=1 | ahyp rank=1
+ | L0-false | L1-false | L2-true | L3-false
+----
+#9: h=so(2,5) | real rank(h)=2 | ahyp rank=2
+ | L0-true | L1-true | L2-false | L3-false
+----
+##################
+g=su(3,4) | real rank g=3 | a-hyp rank g=3
+----------------------------
+#1: h=su(1,2)+su(2,2) + a torus of 1 compact dimensions | real rank(h)=3 | ahyp rank=3
+ | L0-true | L1-true | L2-false | L3-false
+----
+#2: h=su(1,2)+su(1,3) + a torus of 1 compact dimensions | real rank(h)=2 | ahyp rank=2
+ | L0-false | L1-false | L2-true | L3-false
+----
+#3: h=su(3)+su(1,3) + a torus of 1 compact dimensions | real rank(h)=1 | ahyp rank=1
+ | L0-false | L1-false | L2-true | L3-false
+----
+#4: h=su(3)+su(4) + a torus of 1 compact dimensions | real rank(h)=0 | ahyp rank=0
+ | L0-false | L1-false | L2-true | L3-false
+----
+#5: h=sl(2,R)+su(2,3) + a torus of 1 compact dimensions | real rank(h)=3 | ahyp rank=3
+ | L0-true | L1-true | L2-false | L3-false
+----
+#6: h=su(2)+su(2,3) + a torus of 1 compact dimensions | real rank(h)=2 | ahyp rank=2
+ | L0-false | L1-false | L2-true | L3-false
+----
+#7: h=su(2)+su(1,4) + a torus of 1 compact dimensions | real rank(h)=1 | ahyp rank=1
+ | L0-false | L1-false | L2-true | L3-false
+----
+#8: h=su(3,3) + a torus of 1 compact dimensions | real rank(h)=3 | ahyp rank=3
+ | L0-true | L1-true | L2-false | L3-false
+----
+#9: h=su(2,4) + a torus of 1 compact dimensions | real rank(h)=2 | ahyp rank=2
+ | L0-false | L1-false | L2-true | L3-false
+----
+#10: h=so(4,3) | real rank(h)=3 | ahyp rank=3
+ | L0-true | L1-true | L2-false | L3-false
+----
+##################
+g=sl(7,R) | real rank g=6 | a-hyp rank g=3
+----------------------------
+#1: h=sl(3,R)+sl(4,R) + a torus of  1 non-compact dimensions | real rank(h)=6 | ahyp rank=3
+ | L0-true | L1-true | L2-false | L3-false
+----
+#2: h=sl(2,R)+sl(5,R) + a torus of  1 non-compact dimensions | real rank(h)=6 | ahyp rank=3
+ | L0-true | L1-true | L2-false | L3-false
+----
+#3: h=sl(6,R) + a torus of  1 non-compact dimensions | real rank(h)=6 | ahyp rank=3
+ | L0-true | L1-true | L2-false | L3-false
+----
+#4: h=so(7) | real rank(h)=0 | ahyp rank=0
+ | L0-false | L1-false | L2-true | L3-false
+----
+#5: h=so(2,5) | real rank(h)=2 | ahyp rank=2
+ | L0-false | L1-false | L2-true | L3-false
+----
+#6: h=so(4,3) | real rank(h)=3 | ahyp rank=3
+ | L0-false | L1-true | L2-false | L3-false
+----
+#7: h=so(6,1) | real rank(h)=1 | ahyp rank=1
+ | L0-false | L1-false | L2-true | L3-false
+----
+##################
+```
+
+
+```gap
+g=su(8) | real rank g=0 | a-hyp rank g=0
+----------------------------
+#1: h=su(4)+su(4) + a torus of 1 compact dimensions | real rank(h)=0 | ahyp rank=0
+ | L0-true | L1-true | L2-false | L3-false
+----
+#2: h=su(3)+su(5) + a torus of 1 compact dimensions | real rank(h)=0 | ahyp rank=0
+ | L0-true | L1-true | L2-false | L3-false
+----
+#3: h=su(2)+su(6) + a torus of 1 compact dimensions | real rank(h)=0 | ahyp rank=0
+ | L0-true | L1-true | L2-false | L3-false
+----
+#4: h=su(7) + a torus of 1 compact dimensions | real rank(h)=0 | ahyp rank=0
+ | L0-true | L1-true | L2-false | L3-false
+----
+#5: h=su(2)+su(4) | real rank(h)=0 | ahyp rank=0
+ | L0-true | L1-true | L2-false | L3-false
+----
+#6: h=so(8) | real rank(h)=0 | ahyp rank=0
+ | L0-true | L1-true | L2-false | L3-false
+----
+#7: h=sp(4) | real rank(h)=0 | ahyp rank=0
+ | L0-true | L1-true | L2-false | L3-false
+----
+##################
+g=su(1,7) | real rank g=1 | a-hyp rank g=1
+----------------------------
+#1: h=su(1,3)+su(4) + a torus of 1 compact dimensions | real rank(h)=1 | ahyp rank=1
+ | L0-true | L1-true | L2-false | L3-false
+----
+#2: h=su(1,2)+su(5) + a torus of 1 compact dimensions | real rank(h)=1 | ahyp rank=1
+ | L0-true | L1-true | L2-false | L3-false
+----
+#3: h=su(3)+su(1,4) + a torus of 1 compact dimensions | real rank(h)=1 | ahyp rank=1
+ | L0-true | L1-true | L2-false | L3-false
+----
+#4: h=su(2)+su(1,5) + a torus of 1 compact dimensions | real rank(h)=1 | ahyp rank=1
+ | L0-true | L1-true | L2-false | L3-false
+----
+#5: h=sl(2,R)+su(6) + a torus of 1 compact dimensions | real rank(h)=1 | ahyp rank=1
+ | L0-true | L1-true | L2-false | L3-false
+----
+#6: h=su(1,6) + a torus of 1 compact dimensions | real rank(h)=1 | ahyp rank=1
+ | L0-true | L1-true | L2-false | L3-false
+----
+#7: h=su(7) + a torus of 1 compact dimensions | real rank(h)=0 | ahyp rank=0
+ | L0-false | L1-false | L2-true | L3-false
+----
+#8: h=so(1,7) | real rank(h)=1 | ahyp rank=1
+ | L0-true | L1-true | L2-false | L3-false
+----
+##################
+g=su(2,6) | real rank g=2 | a-hyp rank g=2
+----------------------------
+#1: h=su(4)+su(2,2) + a torus of 1 compact dimensions | real rank(h)=2 | ahyp rank=2
+ | L0-true | L1-true | L2-false | L3-false
+----
+#2: h=su(1,3)+su(1,3) + a torus of 1 compact dimensions | real rank(h)=2 | ahyp rank=2
+ | L0-true | L1-true | L2-false | L3-false
+----
+#3: h=su(1,2)+su(1,4) + a torus of 1 compact dimensions | real rank(h)=2 | ahyp rank=2
+ | L0-true | L1-true | L2-false | L3-false
+----
+#4: h=su(3)+su(2,3) + a torus of 1 compact dimensions | real rank(h)=2 | ahyp rank=2
+ | L0-true | L1-true | L2-false | L3-false
+----
+#5: h=su(1,2)+su(5) + a torus of 1 compact dimensions | real rank(h)=1 | ahyp rank=1
+ | L0-false | L1-false | L2-true | L3-false
+----
+#6: h=su(2)+su(2,4) + a torus of 1 compact dimensions | real rank(h)=2 | ahyp rank=2
+ | L0-true | L1-true | L2-false | L3-false
+----
+#7: h=sl(2,R)+su(1,5) + a torus of 1 compact dimensions | real rank(h)=2 | ahyp rank=2
+ | L0-true | L1-true | L2-false | L3-false
+----
+#8: h=su(2)+su(6) + a torus of 1 compact dimensions | real rank(h)=0 | ahyp rank=0
+ | L0-false | L1-false | L2-true | L3-false
+----
+#9: h=su(2,5) + a torus of 1 compact dimensions | real rank(h)=2 | ahyp rank=2
+ | L0-true | L1-true | L2-false | L3-false
+----
+#10: h=su(1,6) + a torus of 1 compact dimensions | real rank(h)=1 | ahyp rank=1
+ | L0-false | L1-false | L2-true | L3-false
+----
+#11: h=su(2)+su(1,3) | real rank(h)=1 | ahyp rank=1
+ | L0-false | L1-false | L2-true | L3-false
+----
+#12: h=sp(1,3) | real rank(h)=1 | ahyp rank=1
+ | L0-false | L1-false | L2-true | L3-false
+----
+##################
+g=su(3,5) | real rank g=3 | a-hyp rank g=3
+----------------------------
+#1: h=su(1,3)+su(2,2) + a torus of 1 compact dimensions | real rank(h)=3 | ahyp rank=3
+ | L0-true | L1-true | L2-false | L3-false
+----
+#2: h=su(4)+su(1,3) + a torus of 1 compact dimensions | real rank(h)=1 | ahyp rank=1
+ | L0-false | L1-false | L2-true | L3-false
+----
+#3: h=su(1,2)+su(2,3) + a torus of 1 compact dimensions | real rank(h)=3 | ahyp rank=3
+ | L0-true | L1-true | L2-false | L3-false
+----
+#4: h=su(1,2)+su(1,4) + a torus of 1 compact dimensions | real rank(h)=2 | ahyp rank=2
+ | L0-false | L1-false | L2-true | L3-false
+----
+#5: h=su(3)+su(2,3) + a torus of 1 compact dimensions | real rank(h)=2 | ahyp rank=2
+ | L0-false | L1-false | L2-true | L3-false
+----
+#6: h=su(3)+su(5) + a torus of 1 compact dimensions | real rank(h)=0 | ahyp rank=0
+ | L0-false | L1-false | L2-true | L3-false
+----
+#7: h=su(2)+su(3,3) + a torus of 1 compact dimensions | real rank(h)=3 | ahyp rank=3
+ | L0-true | L1-true | L2-false | L3-false
+----
+#8: h=sl(2,R)+su(2,4) + a torus of 1 compact dimensions | real rank(h)=3 | ahyp rank=3
+ | L0-true | L1-true | L2-false | L3-false
+----
+#9: h=su(2)+su(1,5) + a torus of 1 compact dimensions | real rank(h)=1 | ahyp rank=1
+ | L0-false | L1-false | L2-true | L3-false
+----
+#10: h=su(3,4) + a torus of 1 compact dimensions | real rank(h)=3 | ahyp rank=3
+ | L0-true | L1-true | L2-false | L3-false
+----
+#11: h=su(2,5) + a torus of 1 compact dimensions | real rank(h)=2 | ahyp rank=2
+ | L0-false | L1-false | L2-true | L3-false
+----
+#12: h=so(3,5) | real rank(h)=3 | ahyp rank=3
+ | L0-true | L1-true | L2-false | L3-false
+----
+##################
+g=su(4,4) | real rank g=4 | a-hyp rank g=4
+----------------------------
+#1: h=sl(4,C) + a torus of  1 non-compact dimensions | real rank(h)=4 | ahyp rank=2
+ | L0-true | L1-false | L2-false | L3-false
+----
+#2: h=su(2,2)+su(2,2) + a torus of 1 compact dimensions | real rank(h)=4 | ahyp rank=4
+ | L0-true | L1-true | L2-false | L3-false
+----
+#3: h=su(1,3)+su(1,3) + a torus of 1 compact dimensions | real rank(h)=2 | ahyp rank=2
+ | L0-false | L1-false | L2-true | L3-false
+----
+#4: h=su(4)+su(4) + a torus of 1 compact dimensions | real rank(h)=0 | ahyp rank=0
+ | L0-false | L1-false | L2-true | L3-false
+----
+#5: h=su(1,2)+su(2,3) + a torus of 1 compact dimensions | real rank(h)=3 | ahyp rank=3
+ | L0-false | L1-false | L2-true | L3-false
+----
+#6: h=su(1,2)+su(2,3) + a torus of 1 compact dimensions | real rank(h)=3 | ahyp rank=3
+ | L0-false | L1-false | L2-true | L3-false
+----
+#7: h=su(3)+su(1,4) + a torus of 1 compact dimensions | real rank(h)=1 | ahyp rank=1
+ | L0-false | L1-false | L2-true | L3-false
+----
+#8: h=su(3)+su(1,4) + a torus of 1 compact dimensions | real rank(h)=1 | ahyp rank=1
+ | L0-false | L1-false | L2-true | L3-false
+----
+#9: h=sl(2,R)+su(3,3) + a torus of 1 compact dimensions | real rank(h)=4 | ahyp rank=4
+ | L0-true | L1-true | L2-false | L3-false
+----
+#10: h=su(2)+su(2,4) + a torus of 1 compact dimensions | real rank(h)=2 | ahyp rank=2
+ | L0-false | L1-false | L2-true | L3-false
+----
+#11: h=su(2)+su(2,4) + a torus of 1 compact dimensions | real rank(h)=2 | ahyp rank=2
+ | L0-false | L1-false | L2-true | L3-false
+----
+#12: h=su(3,4) + a torus of 1 compact dimensions | real rank(h)=3 | ahyp rank=3
+ | L0-false | L1-false | L2-true | L3-false
+----
+#13: h=su(3,4) + a torus of 1 compact dimensions | real rank(h)=3 | ahyp rank=3
+ | L0-false | L1-false | L2-true | L3-false
+----
+#14: h=su(2)+su(2,2) | real rank(h)=2 | ahyp rank=2
+ | L0-false | L1-false | L2-true | L3-false
+----
+#15: h=sl(2,R)+su(4) | real rank(h)=1 | ahyp rank=1
+ | L0-false | L1-false | L2-true | L3-false
+----
+#16: h=sl(2,R)+su(1,3) | real rank(h)=2 | ahyp rank=2
+ | L0-false | L1-false | L2-true | L3-false
+----
+#17: h=sl(2,R)+su(2,2) | real rank(h)=3 | ahyp rank=3
+ | L0-false | L1-false | L2-true | L3-false
+----
+#18: h=so*(8) | real rank(h)=2 | ahyp rank=2
+ | L0-false | L1-false | L2-true | L3-false
+----
+#19: h=so(4,4) | real rank(h)=4 | ahyp rank=4
+ | L0-true | L1-true | L2-false | L3-false
+----
+#20: h=sp(2,2) | real rank(h)=2 | ahyp rank=2
+ | L0-false | L1-false | L2-true | L3-false
+----
+#21: h=sp(4,R) | real rank(h)=4 | ahyp rank=4
+ | L0-true | L1-true | L2-false | L3-false
+----
+##################
+g=sl(4,H) | real rank g=3 | a-hyp rank g=2
+----------------------------
+#1: h=sl(4,C) + a torus of 1 compact dimensions | real rank(h)=3 | ahyp rank=2
+ | L0-true | L1-true | L2-false | L3-false
+----
+#2: h=sl(2,H)+sl(2,H) + a torus of  1 non-compact dimensions | real rank(h)=3 | ahyp rank=2
+ | L0-true | L1-true | L2-false | L3-false
+----
+#3: h=su(2)+sl(3,H) + a torus of  1 non-compact dimensions | real rank(h)=3 | ahyp rank=1
+ | L0-true | L1-false | L2-false | L3-false
+----
+#4: h=su(2)+sl(4,R) | real rank(h)=3 | ahyp rank=2
+ | L0-true | L1-true | L2-false | L3-false
+----
+#5: h=sl(2,R)+sl(2,H) | real rank(h)=2 | ahyp rank=2
+ | L0-false | L1-true | L2-false | L3-false
+----
+#6: h=so*(8) | real rank(h)=2 | ahyp rank=2
+ | L0-false | L1-true | L2-false | L3-false
+----
+#7: h=sp(4) | real rank(h)=0 | ahyp rank=0
+ | L0-false | L1-false | L2-true | L3-false
+----
+#8: h=sp(1,3) | real rank(h)=1 | ahyp rank=1
+ | L0-false | L1-false | L2-true | L3-false
+----
+#9: h=sp(2,2) | real rank(h)=2 | ahyp rank=2
+ | L0-false | L1-true | L2-false | L3-false
+----
+##################
+g=sl(8,R) | real rank g=7 | a-hyp rank g=4
+----------------------------
+#1: h=sl(4,R)+sl(4,R) + a torus of  1 non-compact dimensions | real rank(h)=7 | ahyp rank=4
+ | L0-true | L1-true | L2-false | L3-false
+----
+#2: h=sl(4,C) + a torus of 1 compact dimensions | real rank(h)=3 | ahyp rank=2
+ | L0-false | L1-false | L2-true | L3-false
+----
+#3: h=sl(4,C) + a torus of 1 compact dimensions | real rank(h)=3 | ahyp rank=2
+ | L0-false | L1-false | L2-true | L3-false
+----
+#4: h=sl(3,R)+sl(5,R) + a torus of  1 non-compact dimensions | real rank(h)=7 | ahyp rank=3
+ | L0-true | L1-false | L2-false | L3-false
+----
+#5: h=sl(2,R)+sl(6,R) + a torus of  1 non-compact dimensions | real rank(h)=7 | ahyp rank=4
+ | L0-true | L1-true | L2-false | L3-false
+----
+#6: h=sl(7,R) + a torus of  1 non-compact dimensions | real rank(h)=7 | ahyp rank=3
+ | L0-true | L1-false | L2-false | L3-false
+----
+#7: h=su(2)+sl(2,H) | real rank(h)=1 | ahyp rank=1
+ | L0-false | L1-false | L2-true | L3-false
+----
+#8: h=sl(2,R)+sl(4,R) | real rank(h)=4 | ahyp rank=3
+ | L0-false | L1-false | L2-false | L3-true
+----
+#9: h=so(8) | real rank(h)=0 | ahyp rank=0
+ | L0-false | L1-false | L2-true | L3-false
+----
+#10: h=so(4,4) | real rank(h)=4 | ahyp rank=4
+ | L0-false | L1-true | L2-false | L3-false
+----
+#11: h=so(3,5) | real rank(h)=3 | ahyp rank=3
+ | L0-false | L1-false | L2-true | L3-false
+----
+#12: h=so(1,7) | real rank(h)=1 | ahyp rank=1
+ | L0-false | L1-false | L2-true | L3-false
+----
+#13: h=sp(4,R) | real rank(h)=4 | ahyp rank=4
+ | L0-false | L1-true | L2-false | L3-false
+----
+##################
+g=su(9) | real rank g=0 | a-hyp rank g=0
+----------------------------
+#1: h=su(4)+su(5) + a torus of 1 compact dimensions | real rank(h)=0 | ahyp rank=0
+ | L0-true | L1-true | L2-false | L3-false
+----
+#2: h=su(3)+su(6) + a torus of 1 compact dimensions | real rank(h)=0 | ahyp rank=0
+ | L0-true | L1-true | L2-false | L3-false
+----
+#3: h=su(2)+su(7) + a torus of 1 compact dimensions | real rank(h)=0 | ahyp rank=0
+ | L0-true | L1-true | L2-false | L3-false
+----
+#4: h=su(8) + a torus of 1 compact dimensions | real rank(h)=0 | ahyp rank=0
+ | L0-true | L1-true | L2-false | L3-false
+----
+#5: h=su(3)+su(3) | real rank(h)=0 | ahyp rank=0
+ | L0-true | L1-true | L2-false | L3-false
+----
+#6: h=so(9) | real rank(h)=0 | ahyp rank=0
+ | L0-true | L1-true | L2-false | L3-false
+----
+##################
+g=su(1,8) | real rank g=1 | a-hyp rank g=1
+----------------------------
+#1: h=su(1,3)+su(5) + a torus of 1 compact dimensions | real rank(h)=1 | ahyp rank=1
+ | L0-true | L1-true | L2-false | L3-false
+----
+#2: h=su(4)+su(1,4) + a torus of 1 compact dimensions | real rank(h)=1 | ahyp rank=1
+ | L0-true | L1-true | L2-false | L3-false
+----
+#3: h=su(1,2)+su(6) + a torus of 1 compact dimensions | real rank(h)=1 | ahyp rank=1
+ | L0-true | L1-true | L2-false | L3-false
+----
+#4: h=su(3)+su(1,5) + a torus of 1 compact dimensions | real rank(h)=1 | ahyp rank=1
+ | L0-true | L1-true | L2-false | L3-false
+----
+#5: h=su(2)+su(1,6) + a torus of 1 compact dimensions | real rank(h)=1 | ahyp rank=1
+ | L0-true | L1-true | L2-false | L3-false
+----
+#6: h=sl(2,R)+su(7) + a torus of 1 compact dimensions | real rank(h)=1 | ahyp rank=1
+ | L0-true | L1-true | L2-false | L3-false
+----
+#7: h=su(1,7) + a torus of 1 compact dimensions | real rank(h)=1 | ahyp rank=1
+ | L0-true | L1-true | L2-false | L3-false
+----
+#8: h=su(8) + a torus of 1 compact dimensions | real rank(h)=0 | ahyp rank=0
+ | L0-false | L1-false | L2-true | L3-false
+----
+#9: h=so(8,1) | real rank(h)=1 | ahyp rank=1
+ | L0-true | L1-true | L2-false | L3-false
+----
+##################
+g=su(2,7) | real rank g=2 | a-hyp rank g=2
+----------------------------
+#1: h=su(2,2)+su(5) + a torus of 1 compact dimensions | real rank(h)=2 | ahyp rank=2
+ | L0-true | L1-true | L2-false | L3-false
+----
+#2: h=su(1,3)+su(1,4) + a torus of 1 compact dimensions | real rank(h)=2 | ahyp rank=2
+ | L0-true | L1-true | L2-false | L3-false
+----
+#3: h=su(4)+su(2,3) + a torus of 1 compact dimensions | real rank(h)=2 | ahyp rank=2
+ | L0-true | L1-true | L2-false | L3-false
+----
+#4: h=su(1,2)+su(1,5) + a torus of 1 compact dimensions | real rank(h)=2 | ahyp rank=2
+ | L0-true | L1-true | L2-false | L3-false
+----
+#5: h=su(3)+su(2,4) + a torus of 1 compact dimensions | real rank(h)=2 | ahyp rank=2
+ | L0-true | L1-true | L2-false | L3-false
+----
+#6: h=su(1,2)+su(6) + a torus of 1 compact dimensions | real rank(h)=1 | ahyp rank=1
+ | L0-false | L1-false | L2-true | L3-false
+----
+#7: h=su(2)+su(2,5) + a torus of 1 compact dimensions | real rank(h)=2 | ahyp rank=2
+ | L0-true | L1-true | L2-false | L3-false
+----
+#8: h=sl(2,R)+su(1,6) + a torus of 1 compact dimensions | real rank(h)=2 | ahyp rank=2
+ | L0-true | L1-true | L2-false | L3-false
+----
+#9: h=su(2)+su(7) + a torus of 1 compact dimensions | real rank(h)=0 | ahyp rank=0
+ | L0-false | L1-false | L2-true | L3-false
+----
+#10: h=su(2,6) + a torus of 1 compact dimensions | real rank(h)=2 | ahyp rank=2
+ | L0-true | L1-true | L2-false | L3-false
+----
+#11: h=su(1,7) + a torus of 1 compact dimensions | real rank(h)=1 | ahyp rank=1
+ | L0-false | L1-false | L2-true | L3-false
+----
+#12: h=so(2,7) | real rank(h)=2 | ahyp rank=2
+ | L0-true | L1-true | L2-false | L3-false
+----
+##################
+g=su(3,6) | real rank g=3 | a-hyp rank g=3
+----------------------------
+#1: h=su(2,2)+su(1,4) + a torus of 1 compact dimensions | real rank(h)=3 | ahyp rank=3
+ | L0-true | L1-true | L2-false | L3-false
+----
+#2: h=su(1,3)+su(2,3) + a torus of 1 compact dimensions | real rank(h)=3 | ahyp rank=3
+ | L0-true | L1-true | L2-false | L3-false
+----
+#3: h=su(4)+su(2,3) + a torus of 1 compact dimensions | real rank(h)=2 | ahyp rank=2
+ | L0-false | L1-false | L2-true | L3-false
+----
+#4: h=su(1,3)+su(5) + a torus of 1 compact dimensions | real rank(h)=1 | ahyp rank=1
+ | L0-false | L1-false | L2-true | L3-false
+----
+#5: h=su(1,2)+su(2,4) + a torus of 1 compact dimensions | real rank(h)=3 | ahyp rank=3
+ | L0-true | L1-true | L2-false | L3-false
+----
+#6: h=su(3)+su(3,3) + a torus of 1 compact dimensions | real rank(h)=3 | ahyp rank=3
+ | L0-true | L1-true | L2-false | L3-false
+----
+#7: h=su(1,2)+su(1,5) + a torus of 1 compact dimensions | real rank(h)=2 | ahyp rank=2
+ | L0-false | L1-false | L2-true | L3-false
+----
+#8: h=su(3)+su(6) + a torus of 1 compact dimensions | real rank(h)=0 | ahyp rank=0
+ | L0-false | L1-false | L2-true | L3-false
+----
+#9: h=su(2)+su(3,4) + a torus of 1 compact dimensions | real rank(h)=3 | ahyp rank=3
+ | L0-true | L1-true | L2-false | L3-false
+----
+#10: h=sl(2,R)+su(2,5) + a torus of 1 compact dimensions | real rank(h)=3 | ahyp rank=3
+ | L0-true | L1-true | L2-false | L3-false
+----
+#11: h=su(2)+su(1,6) + a torus of 1 compact dimensions | real rank(h)=1 | ahyp rank=1
+ | L0-false | L1-false | L2-true | L3-false
+----
+#12: h=su(3,5) + a torus of 1 compact dimensions | real rank(h)=3 | ahyp rank=3
+ | L0-true | L1-true | L2-false | L3-false
+----
+#13: h=su(2,6) + a torus of 1 compact dimensions | real rank(h)=2 | ahyp rank=2
+ | L0-false | L1-false | L2-true | L3-false
+----
+#14: h=su(1,2)+su(3) | real rank(h)=1 | ahyp rank=1
+ | L0-false | L1-false | L2-true | L3-false
+----
+#15: h=so(6,3) | real rank(h)=3 | ahyp rank=3
+ | L0-true | L1-true | L2-false | L3-false
+----
+##################
+g=su(4,5) | real rank g=4 | a-hyp rank g=4
+----------------------------
+#1: h=su(2,2)+su(2,3) + a torus of 1 compact dimensions | real rank(h)=4 | ahyp rank=4
+ | L0-true | L1-true | L2-false | L3-false
+----
+#2: h=su(1,3)+su(2,3) + a torus of 1 compact dimensions | real rank(h)=3 | ahyp rank=3
+ | L0-false | L1-false | L2-true | L3-false
+----
+#3: h=su(1,3)+su(1,4) + a torus of 1 compact dimensions | real rank(h)=2 | ahyp rank=2
+ | L0-false | L1-false | L2-true | L3-false
+----
+#4: h=su(4)+su(1,4) + a torus of 1 compact dimensions | real rank(h)=1 | ahyp rank=1
+ | L0-false | L1-false | L2-true | L3-false
+----
+#5: h=su(4)+su(5) + a torus of 1 compact dimensions | real rank(h)=0 | ahyp rank=0
+ | L0-false | L1-false | L2-true | L3-false
+----
+#6: h=su(1,2)+su(3,3) + a torus of 1 compact dimensions | real rank(h)=4 | ahyp rank=4
+ | L0-true | L1-true | L2-false | L3-false
+----
+#7: h=su(1,2)+su(2,4) + a torus of 1 compact dimensions | real rank(h)=3 | ahyp rank=3
+ | L0-false | L1-false | L2-true | L3-false
+----
+#8: h=su(3)+su(2,4) + a torus of 1 compact dimensions | real rank(h)=2 | ahyp rank=2
+ | L0-false | L1-false | L2-true | L3-false
+----
+#9: h=su(3)+su(1,5) + a torus of 1 compact dimensions | real rank(h)=1 | ahyp rank=1
+ | L0-false | L1-false | L2-true | L3-false
+----
+#10: h=sl(2,R)+su(3,4) + a torus of 1 compact dimensions | real rank(h)=4 | ahyp rank=4
+ | L0-true | L1-true | L2-false | L3-false
+----
+#11: h=su(2)+su(3,4) + a torus of 1 compact dimensions | real rank(h)=3 | ahyp rank=3
+ | L0-false | L1-false | L2-true | L3-false
+----
+#12: h=su(2)+su(2,5) + a torus of 1 compact dimensions | real rank(h)=2 | ahyp rank=2
+ | L0-false | L1-false | L2-true | L3-false
+----
+#13: h=su(4,4) + a torus of 1 compact dimensions | real rank(h)=4 | ahyp rank=4
+ | L0-true | L1-true | L2-false | L3-false
+----
+#14: h=su(3,5) + a torus of 1 compact dimensions | real rank(h)=3 | ahyp rank=3
+ | L0-false | L1-false | L2-true | L3-false
+----
+#15: h=su(1,2)+su(1,2) | real rank(h)=2 | ahyp rank=2
+ | L0-false | L1-false | L2-true | L3-false
+----
+#16: h=so(4,5) | real rank(h)=4 | ahyp rank=4
+ | L0-true | L1-true | L2-false | L3-false
+----
+##################
+g=sl(9,R) | real rank g=8 | a-hyp rank g=4
+----------------------------
+#1: h=sl(4,R)+sl(5,R) + a torus of  1 non-compact dimensions | real rank(h)=8 | ahyp rank=4
+ | L0-true | L1-true | L2-false | L3-false
+----
+#2: h=sl(3,R)+sl(6,R) + a torus of  1 non-compact dimensions | real rank(h)=8 | ahyp rank=4
+ | L0-true | L1-true | L2-false | L3-false
+----
+#3: h=sl(2,R)+sl(7,R) + a torus of  1 non-compact dimensions | real rank(h)=8 | ahyp rank=4
+ | L0-true | L1-true | L2-false | L3-false
+----
+#4: h=sl(8,R) + a torus of  1 non-compact dimensions | real rank(h)=8 | ahyp rank=4
+ | L0-true | L1-true | L2-false | L3-false
+----
+#5: h=sl(3,R)+sl(3,R) | real rank(h)=4 | ahyp rank=2
+ | L0-false | L1-false | L2-false | L3-true
+----
+#6: h=so(9) | real rank(h)=0 | ahyp rank=0
+ | L0-false | L1-false | L2-true | L3-false
+----
+#7: h=so(2,7) | real rank(h)=2 | ahyp rank=2
+ | L0-false | L1-false | L2-true | L3-false
+----
+#8: h=so(4,5) | real rank(h)=4 | ahyp rank=4
+ | L0-false | L1-true | L2-false | L3-false
+----
+#9: h=so(6,3) | real rank(h)=3 | ahyp rank=3
+ | L0-false | L1-false | L2-true | L3-false
+----
+#10: h=so(8,1) | real rank(h)=1 | ahyp rank=1
+ | L0-false | L1-false | L2-true | L3-false
+----
+##################
+```
+
+## Type B

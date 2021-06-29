@@ -9,6 +9,10 @@ navbar:
       href: readme.html
     - text: "Manual"
       href: manual.html
+    - text: "Manual - v2"
+      href: manual2.html
+    - text: "Database - v2"
+      href: database2.html
 
 
 

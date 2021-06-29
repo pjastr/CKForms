@@ -27,6 +27,9 @@ end);
 InstallGlobalFunction( AHypRankForSimple, function(arg)
 local G, id,out,name, namesplit;
     G:=arg[1];
+    if IsomorphismOfRealSemisimpleLieAlgebras(G,RealFormById("A",1,0))<>false then
+        out:=1;
+    else
         id := IdRealForm(G);
         if id[1]="A" and id[2]=2 and id[3]=3 then
             out:=1;
@@ -77,6 +80,7 @@ local G, id,out,name, namesplit;
         else
             out:=RealRank(G);
         fi;
+    fi;
     return out;
 end);
 
@@ -1675,11 +1679,11 @@ local typeg, rankg, idg,maxs,G,H,l0,l1,l2,l3, index;
     Print(" | real rank g=",RealRank(G)) ;  
     Print(" | a-hyp rank g=",AHypRank(G),"\n") ;
     Print("----------------------------\n");
-    Print("L0-Calabi–Markus phenomenon real rank(g)=real rank(h)\n");  
-    Print("L1-ahyp rank(g)=ahyp rank(h)\n");  
-    Print("L2-ahyp rank(g)>real rank(h)\n");  
-    Print("L3-none of the above conditions is met\n");  
-    Print("----------------------------\n");
+#   Print("L0-Calabi–Markus phenomenon real rank(g)=real rank(h)\n");  
+#   Print("L1-ahyp rank(g)=ahyp rank(h)\n");  
+#   Print("L2-ahyp rank(g)>real rank(h)\n");  
+#   Print("L3-none of the above conditions is met\n");  
+#   Print("----------------------------\n");
     index:=1;
     for H in maxs.subalgs do
         Print("#",index,": h=",NameRealForm(H)," | real rank(h)=",RealRank(H)," | ahyp rank=",AHypRank(H),"\n");

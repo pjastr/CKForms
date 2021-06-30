@@ -29,6 +29,16 @@ local G, id,out,name, namesplit;
     G:=arg[1];
     if IsomorphismOfRealSemisimpleLieAlgebras(G,RealFormById("A",1,0))<>false then
         out:=1;
+    elif IsomorphismOfRealSemisimpleLieAlgebras(G,RealFormById("A",3,0))<>false then
+        out:=2;
+    elif IsomorphismOfRealSemisimpleLieAlgebras(G,RealFormById("B",2,0))<>false then
+        out:=2;
+    elif IsomorphismOfRealSemisimpleLieAlgebras(G,RealFormById("C",3,0))<>false then
+        out:=3;
+    elif IsomorphismOfRealSemisimpleLieAlgebras(G,RealFormById("C",4,0))<>false then
+        out:=4;
+    elif IsomorphismOfRealSemisimpleLieAlgebras(G,RealFormById("D",4,0))<>false then
+        out:=4;
     else
         id := IdRealForm(G);
         if id[1]="A" and id[2]=2 and id[3]=3 then
@@ -1676,8 +1686,8 @@ local typeg, rankg, idg,maxs,G,H,l0,l1,l2,l3, index;
     G:=RealFormById(typeg,rankg,idg);
     maxs:=MaximalReductiveSubalgebras( typeg, rankg, idg );
     Print("g=",NameRealForm(G)); 
-    Print(" | real rank g=",RealRank(G)) ;  
-    Print(" | a-hyp rank g=",AHypRank(G),"\n") ;
+    Print(" | real rank(g)=",RealRank(G)) ;  
+    Print(" | a-hyp rank(g)=",AHypRank(G),"\n") ;
     Print("----------------------------\n");
 #   Print("L0-Calabi–Markus phenomenon real rank(g)=real rank(h)\n");  
 #   Print("L1-ahyp rank(g)=ahyp rank(h)\n");  
@@ -1686,7 +1696,7 @@ local typeg, rankg, idg,maxs,G,H,l0,l1,l2,l3, index;
 #   Print("----------------------------\n");
     index:=1;
     for H in maxs.subalgs do
-        Print("#",index,": h=",NameRealForm(H)," | real rank(h)=",RealRank(H)," | ahyp rank=",AHypRank(H),"\n");
+        Print("#",index,": h=",NameRealForm(H)," | real rank(h)=",RealRank(H)," | ahyp rank(h)=",AHypRank(H),"\n");
         l0:=RealRank(G)=RealRank(H);
         Print(" | L0-",l0);
         l1:=AHypRank(G)=AHypRank(H);
